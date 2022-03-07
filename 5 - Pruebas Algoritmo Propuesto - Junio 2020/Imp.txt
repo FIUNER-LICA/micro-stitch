@@ -1,0 +1,8 @@
+cuando desplazo por fuera de la máscara el máximo que encuentra es erróneo.
+Generalmente la coincidencia correcta tira un valor máximo entre 0.93 y 1.
+Puede usarse el max_val como párametro, de que en caso que no sea mayor a 0.92
+vuelva a tomar una máscara/template en otro lado.
+
+**
+Hay que lograr que el tamaño de máscara sea genérico, o establecer las
+condiciones en que se obtienen los frames de la cámara.

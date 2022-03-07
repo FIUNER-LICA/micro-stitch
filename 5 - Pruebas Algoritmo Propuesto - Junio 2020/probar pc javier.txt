@@ -1,0 +1,25 @@
+#1ra prueba:
+a)
+
+-Abrir "testeo_tiempo_template.py"
+-Ejecutar
+
+#2da prueba
+
+a)
+en funMatch.py (carpeta "Funciones"):
+
+-Comentar de línea 106 a 108
+-Descomentar de línea 115 a 120
+
+b)
+-Abrir "formarpano_V2.py"
+-Ejecutar
+
+·········
+
+*Si se quiere volver a hacer la primer prueba:
+
+en funMatch.py (carpeta "Funciones"):
+-Descomentar de línea 106 a 108
+-Comentar de línea 115 a 120

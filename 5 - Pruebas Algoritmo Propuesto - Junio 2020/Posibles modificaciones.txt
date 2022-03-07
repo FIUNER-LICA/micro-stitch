@@ -1,0 +1,20 @@
+Se podria hacer una correlacion de amplitud para "estimar" cuanto hay de superposición, y de ahi estimar la mascara qeu pueda servir para el stitching
+
+**
+Hacer más robusto
+
+La máscara está posicionada en la mitad del frame que se extrae, por lo tanto
+el desplazamiento del siguiente frame no debe superar la mitad del primero.
+Para mejorar esto se podría:
+1- Hacer pruebas con la cámara para evaluar cuanto puede ser el desplazamiento
+máximo entre frame y frame
+2- Hacer una pila de máscaras o variar la posición
+3- Buscar opción para que sea dinámica la extracción de la máscara
+
+***
+*Buscar varias máscaras, para hacer mas rápido se podría correr en paralelo
+*Otra opción es poniendo condicionales, si detecta un corrimiento negativo
+hacer que a la próxima la máscara tienda a estar del lado negativo (contrario
+del que se venia extrayendo). Como supuestamente no serían tan bruscos los
+cambios de dirección podría funcionar.
+***

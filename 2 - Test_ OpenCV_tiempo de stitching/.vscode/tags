@@ -1,0 +1,109 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CppHeaderParser	hdr_parser.py	/^class CppHeaderParser(object):$/;"	kind:class	line:34
+MainWindow	main.py	/^class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):$/;"	kind:class	line:8
+QBrush	TEST_FUNCTIONS.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:4
+QBrush	main.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:3
+QImage	TEST_FUNCTIONS.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:4
+QImage	main.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:3
+QPainter	TEST_FUNCTIONS.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:4
+QPainter	main.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:3
+QPen	TEST_FUNCTIONS.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:4
+QPen	main.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:3
+QPixmap	TEST_FUNCTIONS.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:4
+QPixmap	main.py	/^from PyQt5.QtGui import QPixmap, QImage, QPainter, QBrush, QPen$/;"	kind:namespace	line:3
+Qt	TEST_FUNCTIONS.py	/^from PyQt5.QtCore import Qt$/;"	kind:namespace	line:5
+Qt	main.py	/^from PyQt5.QtCore import Qt$/;"	kind:namespace	line:4
+QtCore	mainwindow_ui.py	/^from PyQt5 import QtCore, QtGui, QtWidgets$/;"	kind:namespace	line:9
+QtGui	mainwindow_ui.py	/^from PyQt5 import QtCore, QtGui, QtWidgets$/;"	kind:namespace	line:9
+QtWidgets	mainwindow_ui.py	/^from PyQt5 import QtCore, QtGui, QtWidgets$/;"	kind:namespace	line:9
+TEST_FUNCTIONS.py	TEST_FUNCTIONS.py	1;"	kind:file	line:1
+Ui_MainWindow	mainwindow_ui.py	/^class Ui_MainWindow(object):$/;"	kind:class	line:12
+__init__	TEST_FUNCTIONS.py	/^    def __init__(self):$/;"	kind:member	line:10
+__init__	hdr_parser.py	/^    def __init__(self, generate_umat_decls=False, generate_gpumat_decls=False):$/;"	kind:member	line:36
+__init__	main.py	/^    def __init__(self, *args, **kwargs):$/;"	kind:member	line:9
+a	TEST_FUNCTIONS.py	/^    a = funciones()$/;"	kind:variable	line:105
+a	hdr_parser.py	/^                        a = a[:eqpos].strip()$/;"	kind:variable	line:570
+app	main.py	/^    app = QtWidgets.QApplication([])$/;"	kind:variable	line:277
+arg_type	hdr_parser.py	/^                            arg_type = mat$/;"	kind:variable	line:578
+arg_type	hdr_parser.py	/^                            arg_type = mat$/;"	kind:variable	line:580
+arg_type	hdr_parser.py	/^                            arg_type = mat$/;"	kind:variable	line:583
+arg_type	hdr_parser.py	/^                            arg_type = vector_mat$/;"	kind:variable	line:586
+arg_type	hdr_parser.py	/^                            arg_type = vector_mat$/;"	kind:variable	line:588
+arg_type	hdr_parser.py	/^                            arg_type = vector_mat$/;"	kind:variable	line:591
+batch_replace	hdr_parser.py	/^    def batch_replace(self, s, pairs):$/;"	kind:member	line:48
+buildBiPano	main.py	/^    def buildBiPano(self):$/;"	kind:member	line:134
+buildPano	main.py	/^    def buildPano(self):$/;"	kind:member	line:164
+calcularTiempo	main.py	/^    def calcularTiempo(func): $/;"	kind:member	line:87
+cv2	TEST_FUNCTIONS.py	/^from cv2 import cv2$/;"	kind:namespace	line:6
+cv2	main.py	/^from cv2 import cv2$/;"	kind:namespace	line:5
+cv2	prueba.py	/^import cv2$/;"	kind:namespace	line:1
+decls	hdr_parser.py	/^    decls = []$/;"	kind:variable	line:977
+defval	hdr_parser.py	/^                        defval = "0"$/;"	kind:variable	line:568
+defval	hdr_parser.py	/^                        defval = a[eqpos+1:].strip()$/;"	kind:variable	line:558
+defval	hdr_parser.py	/^                        defval = self.batch_replace(defval, [("InputArrayOfArrays", vector_mat_template),$/;"	kind:variable	line:593
+eqpos	hdr_parser.py	/^                            eqpos = a.find("CV_WRAP_DEFAULT")$/;"	kind:variable	line:564
+eqpos	hdr_parser.py	/^                        eqpos = a.find("CV_DEFAULT")$/;"	kind:variable	line:560
+find_next_token	hdr_parser.py	/^    def find_next_token(self, s, tlist, p=0):$/;"	kind:member	line:764
+funciones	TEST_FUNCTIONS.py	/^class funciones ():$/;"	kind:class	line:9
+get_dotted_name	hdr_parser.py	/^    def get_dotted_name(self, name):$/;"	kind:member	line:614
+get_macro_arg	hdr_parser.py	/^    def get_macro_arg(self, arg_str, npos):$/;"	kind:member	line:53
+hdr_parser.py	hdr_parser.py	1;"	kind:file	line:1
+img	prueba.py	/^img = cv2.imread('DSC00290.JPG', cv2.IMREAD_GRAYSCALE)$/;"	kind:variable	line:5
+img_output	prueba.py	/^img_output = np.zeros(img.shape, dtype=img.dtype)$/;"	kind:variable	line:11
+img_output	prueba.py	/^img_output = np.zeros(img.shape, dtype=img.dtype)$/;"	kind:variable	line:28
+img_output	prueba.py	/^img_output = np.zeros(img.shape, dtype=img.dtype)$/;"	kind:variable	line:44
+img_output	prueba.py	/^img_output = np.zeros(img.shape, dtype=img.dtype)$/;"	kind:variable	line:60
+inner	main.py	/^        def inner(*args, **kwargs): $/;"	kind:function	line:90
+io	hdr_parser.py	/^import os, sys, re, string, io$/;"	kind:namespace	line:4
+keyPressEvent	main.py	/^    def keyPressEvent(self, event):$/;"	kind:member	line:216
+main.py	main.py	1;"	kind:file	line:1
+mainwindow_ui.py	mainwindow_ui.py	1;"	kind:file	line:1
+math	prueba.py	/^import math$/;"	kind:namespace	line:3
+method	hdr_parser.py	/^                    return [] # class method typedef$/;"	kind:class	line:497
+newFrame	main.py	/^    def newFrame(self):$/;"	kind:member	line:182
+newmatriz	TEST_FUNCTIONS.py	/^    def newmatriz (self):$/;"	kind:member	line:13
+newmatriz2	TEST_FUNCTIONS.py	/^    def newmatriz2 (self, matriz):$/;"	kind:member	line:27
+newmatriz2	main.py	/^    def newmatriz2 (self,matriz):$/;"	kind:member	line:125
+np	TEST_FUNCTIONS.py	/^import numpy as np$/;"	kind:namespace	line:2
+np	main.py	/^import numpy as np$/;"	kind:namespace	line:2
+np	prueba.py	/^import numpy as np$/;"	kind:namespace	line:2
+offset_x	prueba.py	/^        offset_x = 0$/;"	kind:variable	line:32
+offset_x	prueba.py	/^        offset_x = int(128.0 * math.sin(2 * 3.14 * i \/ (2*cols)))$/;"	kind:variable	line:64
+offset_x	prueba.py	/^        offset_x = int(20.0 * math.sin(2 * 3.14 * i \/ 150))$/;"	kind:variable	line:48
+offset_x	prueba.py	/^        offset_x = int(25.0 * math.sin(2 * 3.14 * i \/ 180))$/;"	kind:variable	line:15
+offset_y	prueba.py	/^        offset_y = 0$/;"	kind:variable	line:16
+offset_y	prueba.py	/^        offset_y = 0$/;"	kind:variable	line:65
+offset_y	prueba.py	/^        offset_y = int(16.0 * math.sin(2 * 3.14 * j \/ 150))$/;"	kind:variable	line:33
+offset_y	prueba.py	/^        offset_y = int(20.0 * math.cos(2 * 3.14 * j \/ 150))$/;"	kind:variable	line:49
+opencv_hdr_list	hdr_parser.py	/^opencv_hdr_list = [$/;"	kind:variable	line:7
+os	hdr_parser.py	/^import os, sys, re, string, io$/;"	kind:namespace	line:4
+paintEvent	main.py	/^    def paintEvent(self, event):$/;"	kind:member	line:242
+parse	hdr_parser.py	/^    def parse(self, hname, wmode=True):$/;"	kind:member	line:780
+parse_arg	hdr_parser.py	/^    def parse_arg(self, arg_str, argno):$/;"	kind:member	line:73
+parse_class_decl	hdr_parser.py	/^    def parse_class_decl(self, decl_str):$/;"	kind:member	line:243
+parse_enum	hdr_parser.py	/^    def parse_enum(self, decl_str):$/;"	kind:member	line:221
+parse_func_decl	hdr_parser.py	/^    def parse_func_decl(self, decl_str, mat="Mat", docstring=""):$/;"	kind:member	line:382
+parse_func_decl_no_wrap	hdr_parser.py	/^    def parse_func_decl_no_wrap(self, decl_str, static_method=False, docstring=""):$/;"	kind:member	line:270
+parse_stmt	hdr_parser.py	/^    def parse_stmt(self, stmt, end_token, mat="Mat", docstring=""):$/;"	kind:member	line:649
+parser	hdr_parser.py	/^    parser = CppHeaderParser(generate_umat_decls=True, generate_gpumat_decls=True)$/;"	kind:variable	line:976
+print_decls	hdr_parser.py	/^    def print_decls(self, decls):$/;"	kind:member	line:960
+print_function	hdr_parser.py	/^from __future__ import print_function$/;"	kind:namespace	line:3
+prueba.py	prueba.py	1;"	kind:file	line:1
+pylint	TEST_FUNCTIONS.py	/^import pylint$/;"	kind:namespace	line:3
+re	hdr_parser.py	/^import os, sys, re, string, io$/;"	kind:namespace	line:4
+resizeEvent	main.py	/^    def resizeEvent(self, event):$/;"	kind:member	line:205
+retranslateUi	mainwindow_ui.py	/^    def retranslateUi(self, MainWindow):$/;"	kind:member	line:51
+setupUi	mainwindow_ui.py	/^    def setupUi(self, MainWindow):$/;"	kind:member	line:13
+string	hdr_parser.py	/^import os, sys, re, string, io$/;"	kind:namespace	line:4
+sys	hdr_parser.py	/^import os, sys, re, string, io$/;"	kind:namespace	line:4
+test	TEST_FUNCTIONS.py	/^    def test(self):$/;"	kind:member	line:40
+time	TEST_FUNCTIONS.py	/^import time$/;"	kind:namespace	line:7
+time	main.py	/^import time$/;"	kind:namespace	line:6
+vector_mat	hdr_parser.py	/^                        vector_mat = "vector_{}".format("Mat")$/;"	kind:variable	line:574
+vector_mat_template	hdr_parser.py	/^                        vector_mat_template = "vector<{}>".format("Mat")$/;"	kind:variable	line:575
+window	main.py	/^    window = MainWindow()$/;"	kind:variable	line:278

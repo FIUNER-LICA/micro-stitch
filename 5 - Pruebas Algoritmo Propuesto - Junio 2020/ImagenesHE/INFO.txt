@@ -1,0 +1,4 @@
+1 = Cholestasis_high_mag
+2 = Muscular_estriado_transv_400X
+3 = Radiation_proctitis_-_2_alt_--_high_mag
+4 = Radiation_proctitis_--_very_high_mag
