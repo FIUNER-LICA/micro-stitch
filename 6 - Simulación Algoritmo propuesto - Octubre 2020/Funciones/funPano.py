@@ -8,9 +8,11 @@ def pano(panoramica1, img, img2, tras_x, tras_y, X, Y, pos1_2): #ver si sacar im
     boollayer = np.ones((panoramica.shape[0],panoramica.shape[1]),dtype=bool)     #sub-matriz de booleanos
     
     if tras_y!=0 and tras_x==0: #traslacion neta horizontal
+       
+        aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
+
         if tras_y>0:
 
-            aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
             if boollayer.shape[1]<(Y+y1+img2.shape[1]-y2):
                 boollayer.resize (boollayer.shape[0],Y+y1+img2.shape[1]-y2) ####
                 boollayer[:,:]=False
@@ -30,7 +32,6 @@ def pano(panoramica1, img, img2, tras_x, tras_y, X, Y, pos1_2): #ver si sacar im
             panoramica[X:X+img2.shape[0],Y+tras_y:Y+tras_y+img2.shape[1],:] = img2.copy()
         
         else:
-            aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
             # if boollayer.shape[1]<(Y+y2+img2.shape[1]-y1):
             # if Y<np.abs(y2-y1):
             if Y+tras_y<0: 
@@ -56,8 +57,10 @@ def pano(panoramica1, img, img2, tras_x, tras_y, X, Y, pos1_2): #ver si sacar im
                 panoramica[X:X+img2.shape[0],Y+tras_y:Y+tras_y+img2.shape[1],:] = img2.copy()
 
     if tras_x!=0 and tras_y==0: #traslacion neta vertical
+
+        aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
+        
         if tras_x>0:
-            aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
             if boollayer.shape[0]<(X+x1+img2.shape[0]-x2):
              # if X+tras_x<0:
                 boollayer.resize (X+x1+img2.shape[0]-x2,boollayer.shape[1]) ####
@@ -78,7 +81,6 @@ def pano(panoramica1, img, img2, tras_x, tras_y, X, Y, pos1_2): #ver si sacar im
             panoramica[:aux_pano.shape [0],:aux_pano.shape[1],:] = aux_pano.copy()
             panoramica[X+tras_x:X+tras_x+img2.shape[0],Y+tras_y:Y+tras_y+img2.shape[1],:] = img2.copy()
         else:
-            aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
             # if boollayer.shape[0]<(X+x2+img2.shape[0]-x1): 
             if X+tras_x<0:
                 boollayer.resize (x2+aux.shape[0]-x1,boollayer.shape[1]) ####

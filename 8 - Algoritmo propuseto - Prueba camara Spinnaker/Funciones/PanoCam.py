@@ -8,6 +8,7 @@ def panoCam(panoramica1, last_frame, new_frame, X,Y,r, x1,y1):
 
     x2,y2,max_val = funMatch.MatchMask (new_frame,mask)
 
+    # agregar: según la dirección del desplazamiento, la localización de donde buscar la máscara
     while max_val<0.8:
         y1=y1-r
         mask = last_frame[x1:x1+r,y1:y1+r,:]
@@ -25,11 +26,9 @@ def panoCam(panoramica1, last_frame, new_frame, X,Y,r, x1,y1):
     if (X+tras_x)>=0:
         X=X+tras_x
     else: X=0
-    
+
     if (Y+tras_y)>=0:
         Y=Y+tras_y
     else: Y=0
-
-    y1=int(last_frame.shape[1]/2) #para que estaba? se puede sacar.. 
 
     return panoramica,X,Y
