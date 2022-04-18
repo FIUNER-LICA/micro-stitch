@@ -16,8 +16,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.image = cv2.imread("2.jpg") # poner menu
             self.image = cv2.cvtColor(self.image,cv2.COLOR_BGR2RGB)
         finally:
-            self.roi_x_pos=100
-            self.roi_y_pos=100
+            self.roi_x_pos=600
+            self.roi_y_pos=600
             self.roi_dx=640
             self.roi_dy=480
             self.img_width=self.image.shape[1]
@@ -29,8 +29,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.roi = cv2.cvtColor(self.roi,cv2.COLOR_BGR2RGB)
             self.last_frame = self.image[self.roi_x_pos:self.roi_x_pos+self.roi_dx,
                                 self.roi_y_pos:self.roi_y_pos+self.roi_dy,:]
-            self.panoramica = self.image[self.roi_x_pos:self.roi_x_pos+self.roi_dx,
-                                self.roi_y_pos:self.roi_y_pos+self.roi_dy,:]
+            self.panoramica = self.image[self.roi_y_pos:self.roi_y_pos+self.roi_dy,
+                                self.roi_x_pos:self.roi_x_pos+self.roi_dx,:]
             self.X = 0
             self.Y = 0
             self.r = 70

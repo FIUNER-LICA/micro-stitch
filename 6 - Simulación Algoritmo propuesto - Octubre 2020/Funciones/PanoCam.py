@@ -29,5 +29,5 @@ def panoCam(panoramica1, last_frame, new_frame, X,Y,r, x1,y1):
         Y=Y+tras_y
     else: Y=0
     y1=int(last_frame.shape[1]/2) #para que estaba? se puede sacar.. 
-
+    print (tras_x,tras_y)
     return panoramica,X,Y
