@@ -2,6 +2,7 @@ from mainwindow_ui import *
 from PyQt5.QtGui import QPixmap, QImage
 from cv2 import cv2
 import time
+from skimage.metrics import structural_similarity as ssim
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -29,6 +30,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         return pow(self.z_pos,2)
 
     def showImage(self):
+        self.endTime=time.time()
         image_aux = cv2.GaussianBlur(self.image,(5,5),self.changeFocus())
         qimage_aux = QImage(image_aux, image_aux.shape[1], image_aux.shape[0],                                                                                                                                                 
                      QImage.Format_Grayscale8)                                                                                                                                                                 
@@ -38,10 +40,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                    self.labelImage.height(),QtCore.Qt.KeepAspectRatio))
         self.elapsedtime = self.endTime-self.startTime
         aux_lap_var = cv2.Laplacian(image_aux,cv2.CV_64F,0).var()
-        # aux_lap_sob = cv2.Sobel(image_aux,cv2.CV_64F,1,0,ksize=5).var()
+        aux_lap_sob = cv2.Sobel(image_aux,cv2.CV_64F,1,0,ksize=5).var()
+        aux_ssim = ssim(self.image, image_aux)
         self.ImageInfo = ("Image info:\n" +
                           "Varianza Lap.: " +str(aux_lap_var) + "\n"
-                        #   "Varianza Sob.: " +str(aux_lap_sob) + "\n"
+                          "Varianza Sob.: " +str(aux_lap_sob) + "\n"
+                          "SSIM : " + str(aux_ssim) + "\n"
                           "Tiempo: "  + str(1.0/self.elapsedtime) +"\n"  
                           "Z-pos: "  + str(self.z_pos) +"\n"  )
         self.labelInfo.setText(self.ImageInfo)
