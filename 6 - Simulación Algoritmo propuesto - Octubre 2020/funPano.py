@@ -4,15 +4,15 @@ import numpy as np
 def pano(panoramica1, img, img2, tras_x, tras_y, X, Y, pos1_2): #ver si sacar img y usar solo panoramica
     panoramica = panoramica1.copy()
     x1,x2,y1,y2 = pos1_2
-    # print(tras_x,tras_y)
+
     boollayer = np.ones((panoramica.shape[0],panoramica.shape[1]),dtype=bool)     #sub-matriz de booleanos
     
     if tras_y!=0 and tras_x==0: #traslacion neta horizontal
         if tras_y>0:
 
             aux = boollayer.copy() #capaz se puede poner uno solo fuera del if
-            if boollayer.shape[1]<(Y+y1+img2.shape[1]-y2):
-                boollayer.resize (boollayer.shape[0],Y+y1+img2.shape[1]-y2) ####
+            if boollayer.shape[1]<(Y+tras_y+img2.shape[1]):
+                boollayer.resize (boollayer.shape[0],Y+tras_y+img2.shape[1]) ####
                 boollayer[:,:]=False
                 boollayer[:,:aux.shape[1]] = aux[:,:]
 
