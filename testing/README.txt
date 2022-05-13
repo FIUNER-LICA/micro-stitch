@@ -1,0 +1,1 @@
+Se realizan pruebas básicas de funcionamiento de módulos, métodos, etc.
