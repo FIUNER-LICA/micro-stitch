@@ -19,7 +19,7 @@ def panoCam(panoramica, last_frame, new_frame, X,Y,r, x1,y1):
     if  max_val<0.8:
         return panoramica,X,Y
         
-    tras_y=y1-y2
+    tras_y = y1-y2
     tras_x = x1-x2
     if (tras_y==0 and tras_x==0):
         return panoramica, X,Y
