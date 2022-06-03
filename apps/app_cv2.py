@@ -51,7 +51,7 @@ while (cap.isOpened()):
 
         if cv2.waitKey(1) & 0xFF == ord('p'):
             x = datetime.datetime.now()
-            cv2.imwrite('./panoramic_{}_{}_{}_{}_{}.jpg'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
+            cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.jpg'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
             break
 
 cv2.destroyAllWindows()

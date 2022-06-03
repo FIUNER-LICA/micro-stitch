@@ -185,7 +185,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        cv2.imwrite('./panoramicas_adquiridas/Panoramica_{}_{}_{}_{}_{}.jpg'.format(x.hour,
+                        cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
                                                             x.minute,x.day,x.month, x.year), panoramic[:,:,:])
                         continue_recording=True             
                         print ("Seguir con adquisición")
