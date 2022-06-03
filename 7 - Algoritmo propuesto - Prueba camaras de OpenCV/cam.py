@@ -9,7 +9,7 @@ import PySpin
 
 def main():
 
-    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(0,cv2.CAP_ANY)#cv2.CAP_DSHOW)
 
     b = True
     b2 = False
