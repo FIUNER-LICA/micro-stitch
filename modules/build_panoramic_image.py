@@ -99,11 +99,12 @@ def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c
                     else:
                         loc_pixels_pano = 0 , panoramic.shape [0] , 0 , panoramic.shape[1]
                         loc_pixels_img = R+tras_r , R+tras_r+image.shape[0] , C+tras_c , C+tras_c+image.shape[1]
+    
+    panoramic_return = np.ndarray(shape = (enlarged_rows , enlarged_column , 3), dtype = np.uint8) 
+    panoramic_return [loc_pixels_pano[0] : loc_pixels_pano[1],loc_pixels_pano[2] : loc_pixels_pano[3],:] = panoramic
+    panoramic_return [loc_pixels_img[0]:loc_pixels_img[1],loc_pixels_img[2]:loc_pixels_img[3],:] = image
+    return panoramic_return
 
-    panoramica = np.ndarray(shape = (enlarged_rows , enlarged_column , 3), dtype = np.int8) 
-    panoramica [loc_pixels_pano[0] : loc_pixels_pano[1],loc_pixels_pano[2] : loc_pixels_pano[3],:] = panoramic
-    panoramica [loc_pixels_img[0]:loc_pixels_img[1],loc_pixels_img[2]:loc_pixels_img[3],:] = image
-    return panoramica
     
 def overlap_sector_combination_linear_interp(panoramic,image, F, C, tras_f, tras_c):
     pass
