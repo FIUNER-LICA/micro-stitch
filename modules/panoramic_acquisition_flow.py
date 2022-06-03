@@ -4,11 +4,16 @@ import mask_search
 import build_panoramic_image
 
 # Establecer conexión con la cámara. Adquirir imagen. --> OpenCV, PySpin, EasyPySpin
+R = 0 # Fila inicial del frame
+C = 0 # Columna inicial del frame
+# def main ():
+
+#     global image_0 
+#     global panoramic 
 image_0 = None
 panoramic = image_0
 image_1 = None
-R = 0 # Fila inicial del frame
-C = 0 # Columna inicial del frame
+
 mascara = Mask()
 
 # Validación de frame

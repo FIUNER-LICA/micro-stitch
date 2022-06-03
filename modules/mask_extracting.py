@@ -42,13 +42,12 @@ class Mask:
                 print ('La traslación en filas y columnas es de: ')
         except:
             print ('Error. No se pudo realizar el cálculo de traslación')
-            pass
 
     @property
     def mask_value(self):
         return self._mask_value
 
-    @mask_value
+    @mask_value.setter
     def mask_value(self, value):
         self._mask_value = value
 
@@ -56,7 +55,7 @@ class Mask:
     def mask_position(self):
         return self._mask_position
 
-    @mask_position
+    @mask_position.setter
     def mask_position(self, value):
         self._mask_position = value
     
@@ -64,7 +63,7 @@ class Mask:
     def new_mask_position(self):
         return self._new_mask_position
 
-    @new_mask_position
+    @new_mask_position.setter
     def new_mask_position(self, value):
         self._new_mask_position = value
 

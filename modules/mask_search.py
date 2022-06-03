@@ -13,9 +13,15 @@ def default_search(image, mask: Mask) -> None: # lista de 1 elemento
         image (ndarray): Nuevo frame.
         mask (Mask): máscara o template buscado
     """
-    res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
-    min_val, max_val, min_loc, max_loc = minMaxLoc(res)
-    mask.new_mask_position((max_loc[1], max_loc[0]))
+    try:
+        print (mask.mask_value.shape)
+        res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = minMaxLoc(res)
+        mask.new_mask_position = (max_loc[1], max_loc[0])
+    except:
+        print ('Error. No se encuentra la matriz de correlación')
+    
+    
     
 def compound_search(image, mask: Mask): # lista de más de 1 elemento
     pass
