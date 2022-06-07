@@ -5,6 +5,7 @@ class Mask:
         self._mask_position = [] # lista de tuplas (f,c)
         self._new_mask_position = None
         self._traslation = None 
+        self._satisfactory_criterion = False
 
     def mask_by_simple_method(self, image, r = 50):       
         """Agrega valores a '_mask_position' y a '_mask_value'.
@@ -70,3 +71,11 @@ class Mask:
     @property
     def traslation(self):
         return self._traslation
+
+    @property
+    def satisfactory_criterion(self):
+        return self._satisfactory_criterion
+
+    @satisfactory_criterion.setter
+    def satisfactory_criterion(self, value):
+        self._satisfactory_criterion = value
