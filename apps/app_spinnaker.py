@@ -4,8 +4,8 @@ path.append('../modules')
 from mask_extracting import Mask
 import panoramic_acquisition as pac
 from globals_DTO import *
-
-from cv2 import cv2
+# from cv2 
+import cv2
 import numpy as np
 import datetime
 

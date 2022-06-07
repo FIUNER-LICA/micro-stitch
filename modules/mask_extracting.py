@@ -4,7 +4,7 @@ class Mask:
         self._mask_value = [] # lista de ndarray de mxnx3
         self._mask_position = [] # lista de tuplas (f,c)
         self._new_mask_position = None
-        self._traslation = None 
+        self._traslation = [0,0]
         self._satisfactory_criterion = False
 
     def mask_by_simple_method(self, image, r = 50):       
