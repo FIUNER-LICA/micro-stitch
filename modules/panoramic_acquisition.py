@@ -46,7 +46,6 @@ def build (panoramic, last_image, new_image, mask: Mask):
 # # en un bucle, image_0 pasaría a ser la panorámica
     try:
         if (abs(mask.traslation[0])>20 or abs(mask.traslation[1])>20):
-            print ("entro")     
             panoramic = build_panoramic_image.overlap_sector_combination_replacement(panoramic, new_image, R, C, 
                                                     mask.traslation[0], mask.traslation[1])
     # Actualizar parámetros para próximo frame:
@@ -60,5 +59,4 @@ def build (panoramic, last_image, new_image, mask: Mask):
     if (C+ mask.traslation[1])>=0:
         C=C+ mask.traslation[1]
     else: C=0
-    # print (R, C, 'ultimo ')
     return panoramic

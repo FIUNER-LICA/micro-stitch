@@ -40,7 +40,6 @@ class Mask:
                 row_traslation = self._mask_position[-1][0]     - self._new_mask_position[0]
                 column_traslation = self._mask_position[-1][1]  - self._new_mask_position[1]
                 self._traslation = [row_traslation, column_traslation]
-                print ('La traslación en filas y columnas es de: ')
         except:
             print ('Error. No se pudo realizar el cálculo de traslación')
 

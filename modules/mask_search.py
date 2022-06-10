@@ -14,7 +14,6 @@ def default_search(image, mask: Mask) -> None: # lista de 1 elemento
         mask (Mask): máscara o template buscado
     """
     try:
-        # print (mask.mask_value.shape)
         res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = minMaxLoc(res)
         mask.new_mask_position = (max_loc[1], max_loc[0])
