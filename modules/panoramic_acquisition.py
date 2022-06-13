@@ -12,6 +12,7 @@ def build (panoramic, last_image, new_image, mask: Mask):
     global R #Fila inicial del frame
     
     global C # Columna inicial del frame
+    growing = False
     # print (R, C)
         
 # mask = Mask()
@@ -32,7 +33,7 @@ def build (panoramic, last_image, new_image, mask: Mask):
     try:
         mask_search.default_search(new_image, mask)
         if not mask.satisfactory_criterion:
-            return panoramic
+            return panoramic, growing
     except:
         print ('Error. Falla en búsqueda de mascará')
 # Sí halló la máscara, calcular la traslación
@@ -45,9 +46,10 @@ def build (panoramic, last_image, new_image, mask: Mask):
 # Construir/agrandar/completar la panorámica
 # # en un bucle, image_0 pasaría a ser la panorámica
     try:
-        if (abs(mask.traslation[0])>20 or abs(mask.traslation[1])>20):
+        if (abs(mask.traslation[0])>10 or abs(mask.traslation[1])>10):
             panoramic = build_panoramic_image.overlap_sector_combination_replacement(panoramic, new_image, R, C, 
                                                     mask.traslation[0], mask.traslation[1])
+            growing = True
     # Actualizar parámetros para próximo frame:
     except:
         print ('Error. Falla en construcción de panorámica')
@@ -59,4 +61,4 @@ def build (panoramic, last_image, new_image, mask: Mask):
     if (C+ mask.traslation[1])>=0:
         C=C+ mask.traslation[1]
     else: C=0
-    return panoramic
+    return panoramic, growing

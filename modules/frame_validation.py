@@ -1,20 +1,22 @@
 """ Previous analysis of the frame to form the panoramic image
 """
-from typing import Tuple
-# from skimage.metrics import structural_similarity as ssim
-import cv2
+# from typing import Tuple
+from skimage.metrics import structural_similarity as ssim
+from cv2 import cv2
 
-# def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
-#     ssim_data = ssim(image_1, image_2, channel_axis, multichannel)
-#     return ssim_data
+def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
+    ssim_data = ssim(image_1, image_2, channel_axis, multichannel)
+    return ssim_data
 
 def focus_validation(image, *args):
     focus_data = ['None focuse data']
-    for i in args:
-        if i==0:
+    print (args)
+    for arg in args:
+        if arg==0:
             lap_var = cv2.Laplacian(image,cv2.CV_64F,0).var()
             focus_data.append(lap_var)
-        if i ==1:
+            # focus_data = [lap_var]
+        if arg ==1:
             lap_sob = cv2.Sobel(image,cv2.CV_64F,1,0,ksize=5).var()
             focus_data.append(lap_sob)
     return focus_data

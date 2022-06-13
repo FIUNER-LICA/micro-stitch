@@ -14,7 +14,7 @@ import sys
 import keyboard
 from threading import Event, Thread
 
-capture_stack = Event()
+capture_video = Event()
 new_image = np.zeros((640,480,3),dtype="uint8")
 
 global continue_recording
@@ -31,15 +31,15 @@ def handle_close(evt):
     global continue_recording
     continue_recording = False
 
-def save_stack():
+def save_video():
     global new_image
-    global capture_stack
-    numero_frame_stack = 0
+    global capture_video
+    numero_frame_video = 0
     while (True):
-        capture_stack.wait()
-        cv2.imwrite('../data/stack_1/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
-        numero_frame_stack += 1
-        capture_stack.clear()
+        capture_video.wait()
+        cv2.imwrite('../data/video_1/frame_{}.jpg'.format(numero_frame_video), new_image[:,:,:])
+        numero_frame_video += 1
+        capture_video.clear()
 
 
 def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
@@ -140,7 +140,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         # Inicio de variablesm, parámetros y creación de objetos
         global R #Fila inicial del frame
         global C # Columna inicial del frame
-        global capture_stack
+        global capture_video
         global new_image
         is_first_image = True
         flag_view  = True
@@ -148,7 +148,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         mask_object = Mask()
         panoramic = np.zeros((640,480,3),dtype="uint8")
 
-        storer = Thread (target=save_stack, daemon=True)#, args=())
+        storer = Thread (target=save_video, daemon=True)#, args=())
         storer.start()
         # numero_frame_stack = 0
         while(continue_recording):
@@ -173,20 +173,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                 else:                    
                     # Getting the image data as a numpy array
                     new_image = image_result.GetNDArray()
+                    capture_video.set()
                     # Event to save image
 
                     if (not is_first_image):
                         try:
-                            panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
-
-                            # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
-                            # numero_frame_stack += 1
+                            panoramic = pac.build(panoramic, last_image, new_image, mask_object)
                             last_image = new_image 
                             flag_view = True
-
-                            if growing:
-                                capture_stack.set()
-
                         except:
                             flag_view = False
                             pass
@@ -196,7 +190,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                         last_image = new_image.copy()
                         is_first_image = False
 
-                        capture_stack.set()
+                        capture_video.set()
 
                     if flag_view:
                         pan_screen = cv2.resize(panoramic,(640,480))

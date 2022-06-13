@@ -4,31 +4,61 @@ path.append('../modules')
 from mask_extracting import Mask
 import panoramic_acquisition as pac
 from globals_DTO import *
+import frame_validation as f_val
 
 from cv2 import cv2
 import numpy as np
 import datetime
+from threading import Event, Thread
 
-# from skimage.metrics import structural_similarity as ssim
-
-# Inicio de variablesm, parámetros y creación de objetos
+# Inicio de variables, parámetros y creación de objetos
 global R #Fila inicial del frame
 global C # Columna inicial del frame
 
 is_first_image = True
 flag_view  = True
+focus = False
 
 mask_object = Mask()
 panoramic = np.zeros((640,480,3),dtype="uint8")
-cap = cv2.VideoCapture(2, cv2.CAP_DSHOW) # 0,cv2.CAP_ANY) #
+new_image = np.zeros((640,480,3),dtype="uint8")
+
+cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
+
+def focus_analisys(threshold, args):
+    global new_image
+    global focus
+    while (True):
+        new_image_capture.wait()
+        try:
+            
+            focus_value = f_val.focus_validation(new_image, args)
+            if focus_value[1] > threshold: 
+                focus=True
+            else:
+                focus = False 
+        except: 
+            print ("Error en cálculo de foco. Revise los parámetros.")
+        new_image_capture.clear()
+
+# Bandera para activar/desactivar el pre-análisis
+image_analisys = False
+
+new_image_capture = Event()
+
+pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
+pre_analisys.start()
+
 
 while (cap.isOpened()):
     ret, new_image = cap.read()
+    if image_analisys:
+        new_image_capture.set() 
     
     if ret == True:
         #Dar inicio al stream y formación de panorámica
-        if (not is_first_image):
-            try:
+        if (not is_first_image) and focus:
+            try:           
                 panoramic = pac.build(panoramic, last_image, new_image, mask_object)
                 last_image = new_image# .copy() # Se puede sacar el .copy()
                 flag_view = True

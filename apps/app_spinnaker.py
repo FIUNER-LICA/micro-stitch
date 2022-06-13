@@ -4,14 +4,40 @@ path.append('../modules')
 from mask_extracting import Mask
 import panoramic_acquisition as pac
 from globals_DTO import *
-# from cv2 
-import cv2
+import frame_validation as f_val
+
+from cv2 import cv2
 import numpy as np
 import datetime
+from threading import Event, Thread
 
 import PySpin
-import sys
 import keyboard
+
+def focus_analisys(threshold, args):
+    global new_image
+    global focus
+    while (True):
+        new_image_capture.wait()
+        try:
+            focus_value = f_val.focus_validation(new_image, args)
+            if focus_value[1] > threshold: 
+                focus=True
+            else:
+                focus = False 
+        except: 
+            print ("Error en cálculo de foco. Revise los parámetros.")
+        new_image_capture.clear()
+
+# Bandera para activar/desactivar el pre-análisis
+image_analisys = False
+focus = False
+
+new_image = np.zeros((640,480,3),dtype="uint8")
+new_image_capture = Event()
+
+pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
+pre_analisys.start()
 
 
 global continue_recording
@@ -127,7 +153,9 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         # Inicio de variablesm, parámetros y creación de objetos
         global R #Fila inicial del frame
         global C # Columna inicial del frame
-
+        global new_image_capture # evento
+        global focus
+        global new_image
         is_first_image = True
         flag_view  = True
 
@@ -156,14 +184,12 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                 else:                    
                     # Getting the image data as a numpy array
                     new_image = image_result.GetNDArray()
+                    if image_analisys:
+                        new_image_capture.set()
 
-                    if (not is_first_image):
+                    if (not is_first_image) and focus:
                         try:
                             panoramic = pac.build(panoramic, last_image, new_image, mask_object)
-
-                            # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
-                            # numero_frame_stack += 1
-
                             last_image = new_image 
                             flag_view = True
                         except:
