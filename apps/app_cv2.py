@@ -76,7 +76,7 @@ while (cap.isOpened()):
             last_image = new_image.copy()
             is_first_image = False
 
-        if flag_view and growing:
+        if flag_view:
             print (type(panoramic))
             view = cv2.resize(panoramic, (700,500))
             cv2.imshow('Panorámica',view)
