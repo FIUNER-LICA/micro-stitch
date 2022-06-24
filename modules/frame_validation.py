@@ -10,7 +10,6 @@ def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
 
 def focus_validation(image, *args):
     focus_data = ['None focuse data']
-    print (args)
     for arg in args:
         if arg==0:
             lap_var = cv2.Laplacian(image,cv2.CV_64F,0).var()

@@ -1,10 +1,10 @@
-from sys import path
-path.append('../modules')
+import sys
+sys.path.append('../')
 
-from mask_extracting import Mask
-import panoramic_acquisition as pac
-from globals_DTO import *
-import frame_validation as f_val
+from modules.mask_extracting import Mask
+import modules.panoramic_acquisition as pac
+from modules.globals_DTO import *
+import modules.frame_validation as f_val
 
 from cv2 import cv2
 import numpy as np
@@ -189,7 +189,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if (not is_first_image) and focus:
                         try:
-                            panoramic = pac.build(panoramic, last_image, new_image, mask_object)
+                            panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
                             last_image = new_image 
                             flag_view = True
                         except:

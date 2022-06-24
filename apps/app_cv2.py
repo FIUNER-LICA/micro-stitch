@@ -1,10 +1,11 @@
-from sys import path
-path.append('../modules')
+import sys
 
-from mask_extracting import Mask
-import panoramic_acquisition as pac
-from globals_DTO import *
-import frame_validation as f_val
+sys.path.append('../')
+
+from modules.mask_extracting import Mask
+import modules.panoramic_acquisition as pac
+from modules.globals_DTO import *
+import modules.frame_validation as f_val
 
 from cv2 import cv2
 import numpy as np
@@ -12,12 +13,15 @@ import datetime
 from threading import Event, Thread
 
 # Inicio de variables, parámetros y creación de objetos
-global R #Fila inicial del frame
-global C # Columna inicial del frame
+# global R #Fila inicial del frame
+# global C # Columna inicial del frame
+R = 0
+C = 0
 
 is_first_image = True
 flag_view  = True
-focus = False
+focus = True
+growing = True
 
 mask_object = Mask()
 panoramic = np.zeros((640,480,3),dtype="uint8")
@@ -34,6 +38,7 @@ def focus_analisys(threshold, args):
             
             focus_value = f_val.focus_validation(new_image, args)
             if focus_value[1] > threshold: 
+                print (focus_value[1], threshold)
                 focus=True
             else:
                 focus = False 
@@ -47,19 +52,19 @@ image_analisys = False
 new_image_capture = Event()
 
 pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
-pre_analisys.start()
 
 
 while (cap.isOpened()):
     ret, new_image = cap.read()
     if image_analisys:
+        pre_analisys.start()
         new_image_capture.set() 
     
     if ret == True:
         #Dar inicio al stream y formación de panorámica
         if (not is_first_image) and focus:
             try:           
-                panoramic = pac.build(panoramic, last_image, new_image, mask_object)
+                panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
                 last_image = new_image# .copy() # Se puede sacar el .copy()
                 flag_view = True
             except:
@@ -71,7 +76,8 @@ while (cap.isOpened()):
             last_image = new_image.copy()
             is_first_image = False
 
-        if flag_view:
+        if flag_view and growing:
+            print (type(panoramic))
             view = cv2.resize(panoramic, (700,500))
             cv2.imshow('Panorámica',view)
             # cv2.resizeWindow('Panorámica', 700, 500)
