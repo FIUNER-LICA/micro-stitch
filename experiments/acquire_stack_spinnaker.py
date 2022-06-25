@@ -1,9 +1,9 @@
-from sys import path
-path.append('../modules')
+from sys import path, exit
+path.append('../')
 
-from mask_extracting import Mask
-import panoramic_acquisition as pac
-from globals_DTO import *
+from modules.mask_extracting import Mask
+import modules.panoramic_acquisition as pac
+from modules.globals_DTO import *
 
 from cv2 import cv2
 import numpy as np
@@ -37,7 +37,7 @@ def save_stack():
     numero_frame_stack = 0
     while (True):
         capture_stack.wait()
-        cv2.imwrite('../data/stack_1/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
+        cv2.imwrite('../data/stack_1/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
         numero_frame_stack += 1
         capture_stack.clear()
 

@@ -1,9 +1,9 @@
 from sys import path
-path.append('../modules')
+path.append('../')
 
-from mask_extracting import Mask
-import panoramic_acquisition as pac
-from globals_DTO import *
+from modules.mask_extracting import Mask
+import modules.panoramic_acquisition as pac
+from modules.globals_DTO import *
 
 from cv2 import cv2
 import numpy as np
@@ -16,6 +16,8 @@ from threading import Event, Thread
 
 capture_video = Event()
 new_image = np.zeros((640,480,3),dtype="uint8")
+image_stack_list = []
+stop_rec = False
 
 global continue_recording
 continue_recording = True
@@ -34,13 +36,12 @@ def handle_close(evt):
 def save_video():
     global new_image
     global capture_video
-    numero_frame_video = 0
+    global image_stack_list
+    global stop_rec
     while (True):
         capture_video.wait()
-        cv2.imwrite('../data/video_1/frame_{}.jpg'.format(numero_frame_video), new_image[:,:,:])
-        numero_frame_video += 1
+        image_stack_list.append(new_image)
         capture_video.clear()
-
 
 def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
     """
@@ -202,10 +203,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
-                                                            x.minute,x.day,x.month, x.year), panoramic[:,:,:])
-                        continue_recording=True             
-                        print ("Seguir con adquisición")
+                        # cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
+                        #                                     x.minute,x.day,x.month, x.year), panoramic[:,:,:])
+                        image_stack = np.array(image_stack_list)
+                        cv2.imwritemulti('../data/video_flir_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)
+        
+                        continue_recording=False             
+                        # print ("Seguir con adquisición")
+
                     if keyboard.is_pressed('ENTER'):
                         print('Program is closing...')
                         

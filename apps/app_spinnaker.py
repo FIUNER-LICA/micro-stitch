@@ -1,5 +1,6 @@
-import sys
-sys.path.append('../')
+from sys import path
+
+path.append('../')
 
 from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
@@ -356,6 +357,7 @@ def main():
 
 
 if __name__ == '__main__':
+    import sys
     if main():
         sys.exit(0)
     else:

@@ -1,6 +1,6 @@
-import sys
+from sys import path
 
-sys.path.append('../')
+path.append('../')
 
 from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
@@ -26,6 +26,9 @@ growing = True
 mask_object = Mask()
 panoramic = np.zeros((640,480,3),dtype="uint8")
 new_image = np.zeros((640,480,3),dtype="uint8")
+
+image_stack =[]# np.zeros((640,480,3),dtype="uint8")
+
 
 cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
 
@@ -56,6 +59,9 @@ pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
 
 while (cap.isOpened()):
     ret, new_image = cap.read()
+
+    
+
     if image_analisys:
         pre_analisys.start()
         new_image_capture.set() 
@@ -64,6 +70,7 @@ while (cap.isOpened()):
         #Dar inicio al stream y formación de panorámica
         if (not is_first_image) and focus:
             try:           
+                image_stack.append(new_image)
                 panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
                 last_image = new_image# .copy() # Se puede sacar el .copy()
                 flag_view = True
@@ -77,7 +84,6 @@ while (cap.isOpened()):
             is_first_image = False
 
         if flag_view:
-            print (type(panoramic))
             view = cv2.resize(panoramic, (700,500))
             cv2.imshow('Panorámica',view)
             # cv2.resizeWindow('Panorámica', 700, 500)
@@ -87,7 +93,9 @@ while (cap.isOpened()):
 
         if cv2.waitKey(1) & 0xFF == ord('p'):
             x = datetime.datetime.now()
-            cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.jpg'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
+            image_stack = np.array(image_stack)
+            # cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
+            cv2.imwritemulti('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)#[:,:,:])
             break
 
 cv2.destroyAllWindows()
