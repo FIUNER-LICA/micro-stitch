@@ -5,6 +5,8 @@ def store_valid_images(image):
     pass
 
 def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c):
+
+    
     enlarged_rows = panoramic.shape[0]
     enlarged_column = panoramic.shape[1]
 

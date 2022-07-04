@@ -1,5 +1,28 @@
+"""
+Mask Extracting
+===============
+
+This module contains the implementation of 'Mask' object.\n
+The masks are extracted from a numpy ndarray using different 
+methods implemented in the Mask class.
+
+Mask Content
+------------
+
+Mask object contains the data related to the mask (attributes):
+    - Array values
+    - Position from where it was extracted
+    - Position where it was found
+    - Pixels moved
+
+Mask methods:
+    Mask removal methods can be varied. To learn the details of these methods, we 
+    recommend that you explore the description of each particular method.
+
+"""
+
 class Mask:
-    
+
     def __init__(self) -> None:
         self._mask_value = [] # lista de ndarray de mxnx3
         self._mask_position = [] # lista de tuplas (f,c)
@@ -8,12 +31,14 @@ class Mask:
         self._satisfactory_criterion = False
 
     def mask_by_simple_method(self, image, r = 50):       
-        """Agrega valores a '_mask_position' y a '_mask_value'.
-        La máscara se extrae del centro de la imagen.
+        """
+        The mask is extracted from the center of the image.\n
+        This method assign the position and the value of all pixels on
+        '_mask_position' and '_mask_value' respectively.
 
         Args:
-            image (ndarray): último frame agregado a la imagen panorámica.
-            r (int): tamaño en píxeles de la máscara de rxr.
+            image (ndarray): last frame added to the panoramic image.
+            r (int): number of pixels to dimension the lengh and hight of the mask [rxr].
         """
         try:
             row     = int ((image.shape[0]-r)/2)
@@ -24,17 +49,22 @@ class Mask:
             print ("Error. No se pudo completar la extracción de máscara.")
 
     def n_mask_by_default_method(self, image, r): # en principio n = 4...
-        """Se extraen 4 máscaras cuadradas de rxr. Las
-            posiciones son fijas en las 4 esquinas de la
-            imagen
-
+        """
+        This method extract 4 masks with rxr size. The positions are fixed in the 4
+        corners from the image.
+        
         Args:
-            image (_type_): imagen de MxN.
-            r (int): ancho y largo de las máscaras (imágenes de rxr).
+            image (_type_): image to MxN size.
+            r (int): number of pixels to dimension the lengh and hight of each mask [rxr].
         """
         pass
     
     def traslation_estimate(self):
+        """
+        This method estimate the last shift or translation on rows and columns.
+        The result is asignated to '_traslation' atribute as a list type 
+        [row_traslation, column_traslation].
+        """
         try: 
             if not self._new_mask_position == None:
                 row_traslation = self._mask_position[-1][0]     - self._new_mask_position[0]

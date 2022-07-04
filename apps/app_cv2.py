@@ -1,6 +1,6 @@
 from sys import path
 
-path.append('../')
+path.append('../modules')
 
 from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
