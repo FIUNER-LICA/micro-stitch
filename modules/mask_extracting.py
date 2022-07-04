@@ -22,7 +22,16 @@ Mask methods:
 """
 
 class Mask:
-
+    
+    """
+    Mask
+    ----
+    This object manage the extract and processing of the masks of images.\n
+    His methods are:
+    * mask_by_simple_method 
+    * n_mask_by_default_method
+    * traslation_estimate
+    """
     def __init__(self) -> None:
         self._mask_value = [] # lista de ndarray de mxnx3
         self._mask_position = [] # lista de tuplas (f,c)
@@ -64,6 +73,7 @@ class Mask:
         This method estimate the last shift or translation on rows and columns.
         The result is asignated to '_traslation' atribute as a list type 
         [row_traslation, column_traslation].
+        
         """
         try: 
             if not self._new_mask_position == None:

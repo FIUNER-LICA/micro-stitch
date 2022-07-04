@@ -60,8 +60,6 @@ pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
 while (cap.isOpened()):
     ret, new_image = cap.read()
 
-    
-
     if image_analisys:
         pre_analisys.start()
         new_image_capture.set() 
@@ -72,7 +70,7 @@ while (cap.isOpened()):
             try:           
                 image_stack.append(new_image)
                 panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
-                last_image = new_image# .copy() # Se puede sacar el .copy()
+                last_image = new_image# .copy() # Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                 flag_view = True
             except:
                 flag_view = False

@@ -1,7 +1,22 @@
+"""
+    Panoramic Acquisition
+    =====================
+    In this module a method 'build' is implemented, responsible for 
+    expand/enlargement the panoramic image, from the input images.\n
+
+    First is need import particular modules:
+    * mask_extracting
+    * build_panoramic_image
+    * mask_search
+    * globals_DTO
+
+    Returns:
+        numpy ndarray: The module returns the panoramic image
+        bool: Flag for indicate if panoramic image incorporate a new image or not
+"""
 import sys
 sys.path.append('../modules')
 from globals_DTO import *
-import frame_validation
 from mask_extracting import Mask
 import mask_search
 import build_panoramic_image
@@ -9,20 +24,32 @@ import build_panoramic_image
 # Establecer conexión con la cámara. Adquirir imagen. --> OpenCV, PySpin, EasyPySpin
 
 def build (panoramic, last_image, new_image, mask: Mask):
-    global R #Fila inicial del frame
+    """
+    This method expands the panoramic image. For this, in addition to the parameters 
+    it receives, it needs two global variables (R and C) from 'globals_DTO'. That 
+    variables represent the value in rows and columns in which the previous image 
+    (last_image) is located with respect to the origin (coordinates 0,0) of the 
+    panoramic image.\n
     
+    The secuence of task for build the panoramic image is the next:
+    * Extact the mask. With some method from Mask object as mask_by_simple_method
+    * Mask localization (in the new_image). With the mask_search module
+    * Estimate the traslation. With the traslation_estimate method from Mask object
+    * Expand/Build the panoramic image. With the build_panoramic_image module
+    * Update the globals variables
+
+    Args:
+        panoramic (numpy ndarray): panoramic image to expand/build
+
+        last_image (numpy ndarray): the last image or frame that was added to the panoramic image
+        
+        new_image (numpy ndarray): the new frame that could be added to the panoramic image
+        
+        mask (Mask): Mask object from mask_extracting module
+    """
+    global R #Fila inicial del frame
     global C # Columna inicial del frame
     growing = False
-    # print (R, C)
-        
-# mask = Mask()
-
-# # # # Validación de frame
-# # # # # (No necesariamente deben retornar algo, solo para entendimiento)
-# # # window = [], K = [] , L = []
-
-# # # validation_1 = frame_validation.image_quality(image_0,image_1,window, K, L)
-# # # validation_2 = frame_validation.focus_validation(image_0)
 
     # Extracción/Obtención de máscara
     try:

@@ -1,17 +1,29 @@
+"""
+Mask Search
+===========
+This module implements methods to search for a template or mask in some image.
+--------------------------------------------------------------------------------
+
+The implemented methods are:
+* default_search
+"""
+
 # from threading import Thread
 from mask_extracting import Mask
 from cv2 import matchTemplate, minMaxLoc, TM_CCOEFF_NORMED
 
 def default_search(image, mask: Mask) -> None: # lista de 1 elemento
     """
-    Se realiza la búsqueda de la máscara en el nuevo frame, utilizando 
-    los métodos de OpenCV: matchTemplate (calcula la correlación) y
-    minMaxLoc (halla los máximos, mínimos y sus posiciones respectivas 
-    de una correlación).
+    The search for the mask in the new frame is performed, using the OpenCV 
+    methods: matchTemplate (calculates the correlation) and minMaxLoc (finds 
+    the maximum, minimum and their respective positions of a correlation).
 
     Args:
-        image (ndarray): Nuevo frame.
-        mask (Mask): máscara o template buscado
+        image (ndarray): image in which the mask will be searched. It can be a 
+                        new frame on the process for stitching
+
+        mask (Mask): wanted template or mask. The Mask object comes from the 
+                    mask_extracting module.
     """
     try:
         res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
