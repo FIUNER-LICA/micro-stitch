@@ -70,7 +70,7 @@ while (cap.isOpened()):
             try:           
                 image_stack.append(new_image)
                 panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
-                last_image = new_image# .copy() # TODO: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
+                last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                 flag_view = True
             except:
                 flag_view = False
