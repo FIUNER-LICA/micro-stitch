@@ -45,7 +45,7 @@ global continue_recording
 continue_recording = True
 
 def handle_close(evt):
-    """p
+    """
     This function will close the GUI when close event happens.
 
     :param evt: Event that occurs when the figure closes.

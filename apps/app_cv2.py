@@ -40,7 +40,7 @@ def focus_analisys(threshold, args):
         try:
             
             focus_value = f_val.focus_validation(new_image, args)
-            if focus_value[1] > threshold: 
+            if focus_value[1] > threshold:
                 print (focus_value[1], threshold)
                 focus=True
             else:

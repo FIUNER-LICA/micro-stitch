@@ -1,3 +1,12 @@
+"""
+    Not Found
+    =========
+
+    This script presents the basic flow to create a panoramic image with the
+    proposed stitching method.
+    Only function/method signatures and some example parameters are written.
+
+"""
 import frame_validation
 from mask_extracting import Mask
 import mask_search
