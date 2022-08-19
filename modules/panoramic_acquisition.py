@@ -53,13 +53,14 @@ def build (panoramic, last_image, new_image, mask: Mask):
 
     # Extracción/Obtención de máscara
     try:
-        mask.mask_by_simple_method(last_image, 100)
+        mask.mask_by_simple_method(last_image, 50)
     except:
         print ('Error. Falla en generación de máscara')
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']
     try:
         mask_search.default_search(new_image, mask)
         if not mask.satisfactory_criterion:
+            growing = False
             return panoramic, growing
     except:
         print ('Error. Falla en búsqueda de mascará')
@@ -77,15 +78,17 @@ def build (panoramic, last_image, new_image, mask: Mask):
             panoramic = build_panoramic_image.overlap_sector_combination_replacement(panoramic, new_image, R, C, 
                                                     mask.traslation[0], mask.traslation[1])
             growing = True
+        else:
+            growing = False
     # Actualizar parámetros para próximo frame:
     except:
         print ('Error. Falla en construcción de panorámica')
+    if growing:
+        if (R+mask.traslation[0])>=0:
+            R=R+mask.traslation[0]
+        else: R=0
 
-    if (R+mask.traslation[0])>=0:
-        R=R+mask.traslation[0]
-    else: R=0
-
-    if (C+ mask.traslation[1])>=0:
-        C=C+ mask.traslation[1]
-    else: C=0
+        if (C+ mask.traslation[1])>=0:
+            C=C+ mask.traslation[1]
+        else: C=0
     return panoramic, growing

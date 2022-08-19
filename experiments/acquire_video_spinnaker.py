@@ -1,3 +1,7 @@
+"""
+Captura todas las imagenes que llegan al sensor.
+"""
+
 from sys import path
 path.append('../')
 
@@ -5,7 +9,7 @@ from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 
@@ -208,10 +212,10 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        # cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
-                        #                                     x.minute,x.day,x.month, x.year), panoramic[:,:,:])
+                        cv2.imwrite('../data/automatic_video/panoramic_flir_{}_{}_{}_{}_{}_m9_r50.tiff'.format(x.hour,
+                                                            x.minute,x.day,x.month, x.year), panoramic[:,:,:])
                         image_stack = np.array(image_stack_list)
-                        cv2.imwritemulti('../data/video_flir_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)
+                        cv2.imwritemulti('../data/automatic_video/video_flir_{}_{}_{}_{}_{}_m9_r50.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)
         
                         continue_recording=False             
                         # print ("Seguir con adquisición")
