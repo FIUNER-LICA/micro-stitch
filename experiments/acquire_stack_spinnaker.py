@@ -1,3 +1,19 @@
+"""
+ACQUIRE STACK
+==============
+
+The result of this experiment is a stack of images, where each captured image 
+is part of the generated panoramic image, that is, it passed the established 
+criteria to form the panoramic image.
+
+ALTERNATIVE
+-----------
+
+If change the localization of the invocation of 'capture_stack.set' event, you 
+can acquire or capture all the inputs frames.
+
+"""
+
 from sys import path, exit
 path.append('../')
 
@@ -181,8 +197,11 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                             # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
                             # numero_frame_stack += 1
-                            last_image = new_image 
-                            flag_view = True
+                            if growing: 
+                                last_image = new_image 
+                                flag_view = True
+                            else:
+                                flag_view = False
 
                             if growing:
                                 capture_stack.set()
@@ -210,7 +229,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                         x = datetime.datetime.now()
                         cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
                                                             x.minute,x.day,x.month, x.year), panoramic[:,:,:])
-                        continue_recording=True             
+                        continue_recording=False             
                         print ("Seguir con adquisición")
                     if keyboard.is_pressed('ENTER'):
                         print('Program is closing...')

@@ -190,11 +190,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                             # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
                             # numero_frame_stack += 1
-                            last_image = new_image 
-                            flag_view = True
+                            if growing: 
+                                last_image = new_image 
+                                flag_view = True
+                            else:
+                                flag_view = False
 
-                            # if growing:
-                            #     capture_stack.set()
+                            if growing:
+                                capture_stack.set()
 
                         except:
                             flag_view = False
@@ -205,7 +208,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                         last_image = new_image.copy()
                         is_first_image = False
 
-                        # capture_stack.set()
+                        capture_stack.set()
 
                     if flag_view:
                         pan_screen = cv2.resize(panoramic,(640,480))

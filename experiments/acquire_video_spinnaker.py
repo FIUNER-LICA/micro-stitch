@@ -179,9 +179,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if (not is_first_image):
                         try:
-                            panoramic = pac.build(panoramic, last_image, new_image, mask_object)
-                            last_image = new_image 
-                            flag_view = True
+                            panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
+
+                            if growing: 
+                                last_image = new_image 
+                                flag_view = True
+                            else:
+                                flag_view = False
+
                         except:
                             flag_view = False
                             pass

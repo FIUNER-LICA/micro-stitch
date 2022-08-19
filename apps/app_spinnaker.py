@@ -7,7 +7,7 @@ import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 import modules.frame_validation as f_val
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 from threading import Event, Thread
@@ -191,8 +191,11 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                     if (not is_first_image) and focus:
                         try:
                             panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
-                            last_image = new_image 
-                            flag_view = True
+                            if growing:
+                                last_image = new_image 
+                                flag_view = True
+                            else:
+                                flag_view = False
                         except:
                             flag_view = False
                             pass

@@ -2,7 +2,7 @@
 """
 # from typing import Tuple
 from skimage.metrics import structural_similarity as ssim
-from cv2 import cv2
+import cv2
 
 def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
     ssim_data = ssim(image_1, image_2, channel_axis, multichannel)

@@ -1,0 +1,18 @@
+Consideraciones a tener en cuenta para trabajar con entornos virtuales:
+
+- El entorno en la PC del LAMAE es FlirEnv
+
+- Para importar los módulos propios:
+
+	* path.append('../') o 
+
+	* path.append('C:/Users/LAMAE/Documents/StichingImage/Stitching-HSI')
+ 	* path.append('C:/Users/LAMAE/Documents/StichingImage/Stitching-HSI/modules')
+
+- Al cambiar de entorno, se debe seleccionar en el Visual Studio Code el Python correspondiente
+	(Python 3.8.13 ('FlirEnv':conda))
+
+- Los imports de OpenCV deben ser:
+		* import cv2
+	y no: 
+		* from cv2 import cv2

@@ -1,13 +1,13 @@
 from sys import path
 
-path.append('../modules')
+path.append('../')
 
 from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 import modules.frame_validation as f_val
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 from threading import Event, Thread
@@ -70,13 +70,16 @@ while (cap.isOpened()):
             try:           
                 image_stack.append(new_image)
                 panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
-                last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
-                flag_view = True
+                if growing:
+                    last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
+                    flag_view = True
+                else: 
+                    flag_view = True
             except:
                 flag_view = False
                 pass
 
-        if is_first_image and (cv2.waitKey(1) & 0xFF == ord('i')):
+        if is_first_image:# and (cv2.waitKey(1) & 0xFF == ord('i')):
             panoramic = new_image.copy()
             last_image = new_image.copy()
             is_first_image = False
