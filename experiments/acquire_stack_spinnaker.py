@@ -21,7 +21,7 @@ from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 
@@ -53,7 +53,7 @@ def save_stack():
     numero_frame_stack = 0
     while (True):
         capture_stack.wait()
-        cv2.imwrite('../data/stack_1/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
+        cv2.imwrite('../data/automatic_stack/stack_5/frame_{}_m8_r50.tiff'.format(numero_frame_stack), new_image[:,:,:])
         numero_frame_stack += 1
         capture_stack.clear()
 
@@ -195,16 +195,12 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                         try:
                             panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
 
-                            # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
-                            # numero_frame_stack += 1
                             if growing: 
                                 last_image = new_image 
                                 flag_view = True
-                            else:
-                                flag_view = False
-
-                            if growing:
                                 capture_stack.set()
+                            else:
+                                flag_view = False                                
 
                         except:
                             flag_view = False
@@ -217,7 +213,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                         capture_stack.set()
 
-                    if flag_view:
+                    if True:
                         pan_screen = cv2.resize(panoramic,(640,480))
                         frame_screen=cv2.resize(new_image,(640,480))
                         frame_screen = cv2.cvtColor(frame_screen, cv2.COLOR_RGB2BGR)
@@ -227,7 +223,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
+                        cv2.imwrite('../data/automatic_stack/stack_5/panoramic_flir_{}_{}_{}_{}_{}_m8_r50.tiff'.format(x.hour,
                                                             x.minute,x.day,x.month, x.year), panoramic[:,:,:])
                         continue_recording=False             
                         print ("Seguir con adquisición")

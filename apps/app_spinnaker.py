@@ -32,7 +32,7 @@ def focus_analisys(threshold, args):
 
 # Bandera para activar/desactivar el pre-análisis
 image_analisys = False
-focus = False
+focus = True
 
 new_image = np.zeros((640,480,3),dtype="uint8")
 new_image_capture = Event()

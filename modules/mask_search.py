@@ -29,7 +29,7 @@ def default_search(image, mask: Mask) -> None: # lista de 1 elemento
         res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = minMaxLoc(res)
         mask.new_mask_position = (max_loc[1], max_loc[0])
-        if max_val>=0.9:
+        if max_val>=0.8:
             mask.satisfactory_criterion = True
         else:
             mask.satisfactory_criterion = False
