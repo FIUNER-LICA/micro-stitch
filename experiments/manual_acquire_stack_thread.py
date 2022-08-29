@@ -5,7 +5,7 @@ from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 
@@ -13,9 +13,11 @@ import PySpin
 import sys
 import keyboard
 from threading import Event, Thread
+import time
 
 capture_stack = Event()
 new_image = np.zeros((640,480,3),dtype="uint8")
+pano = True
 
 global continue_recording
 continue_recording = True
@@ -34,20 +36,22 @@ def handle_close(evt):
 def save_stack():
     global new_image
     global capture_stack
+    global pano
     numero_frame_stack = 0
     while (True):
         capture_stack.wait()
-        cv2.imwrite('../data/stack_1/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
+        pano = True
+        time.sleep (0.1)
+        cv2.imwrite('../data/manual_stack_thread/stack_3/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
         numero_frame_stack += 1
         print ('Frame guardado')
         capture_stack.clear()
 
-def save_key():
-    global capture_stack
-    while (True):
-        if cv2.waitKey(1) & 0xFF == ord('s'):
-            capture_stack.set()
-
+# def save_key():
+#     global capture_stack
+#     while (True):
+#         if cv2.waitKey(1) & 0xFF == ord('s'):
+#             capture_stack.set()
 
 def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
     """
@@ -151,13 +155,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         global new_image
         is_first_image = True
         flag_view  = True
+        global pano
 
         mask_object = Mask()
         panoramic = np.zeros((640,480,3),dtype="uint8")
 
-        storer = Thread (target=save_stack, daemon=True)#, args=())
-        press_key = Thread(target = save_key, daemon = True)
-        press_key.start()
+        storer = Thread (target = save_stack, daemon=True)#, args=())
+        # press_key = Thread(target = save_key, daemon = True)
+        # press_key.start()
         storer.start()
         # numero_frame_stack = 0
         while(continue_recording):
@@ -172,7 +177,8 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                 #  Once an image from the buffer is saved and/or no longer
                 #  needed, the image must be released in order to keep the
                 #  buffer from filling up.
-                capture_stack.wait()
+                # if (not is_first_image):
+                    # capture_stack.wait()
                 image_result = cam.GetNextImage(1000)
 
                 #  Ensure image completion
@@ -191,13 +197,13 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                             # cv2.imwrite('./stack/frame_{}.jpg'.format(numero_frame_stack), new_image[:,:,:])
                             # numero_frame_stack += 1
                             if growing: 
-                                last_image = new_image 
+                                last_image = new_image
                                 flag_view = True
                             else:
                                 flag_view = False
 
-                            if growing:
-                                capture_stack.set()
+                            # if growing:
+                            #     capture_stack.set()
 
                         except:
                             flag_view = False
@@ -220,11 +226,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
+                        cv2.imwrite('../data/manual_stack_thread/stack_3/panoramic_flir_{}_{}_{}_{}_{}.tiff'.format(x.hour,
                                                             x.minute,x.day,x.month, x.year), panoramic[:,:,:])
-                        continue_recording=True             
-                        print ("Seguir con adquisición")
+                        print ("Seguir con adquisición: No")
+                        continue_recording=False 
                     
+                    if cv2.waitKey(1) & 0xFF == ord('s'):
+                        capture_stack.set()
+
                     if keyboard.is_pressed('ENTER'):
                         print('Program is closing...')
                         
