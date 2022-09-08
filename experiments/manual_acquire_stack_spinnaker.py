@@ -5,7 +5,7 @@ from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 
-from cv2 import cv2
+import cv2
 import numpy as np
 import datetime
 
@@ -37,7 +37,7 @@ def save_stack():
     numero_frame_stack = 0
     while (True):
         capture_stack.wait()
-        cv2.imwrite('../data/stack_1/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
+        cv2.imwrite('../data/manual_stack_and_panoramic/stack_2/frame_{}.tiff'.format(numero_frame_stack), new_image[:,:,:])
         numero_frame_stack += 1
         capture_stack.clear()
 
@@ -144,6 +144,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         global new_image
         is_first_image = True
         flag_view  = True
+        add_panoramic = False
 
         mask_object = Mask()
         panoramic = np.zeros((640,480,3),dtype="uint8")
@@ -151,8 +152,14 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
         storer = Thread (target=save_stack, daemon=True)#, args=())
         storer.start()
         # numero_frame_stack = 0
+        image_result = cam.GetNextImage(1000)
         while(continue_recording):
             try:
+
+                if (cv2.waitKey(1) & 0xFF == ord('s')) and (add_panoramic == False):
+                        add_panoramic = True
+                        # capture_stack.set()
+
                 #  Retrieve next received image
                 #
                 #  *** NOTES ***
@@ -173,9 +180,10 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                 else:                    
                     # Getting the image data as a numpy array
                     new_image = image_result.GetNDArray()
-                    # Event to save image
 
-                    if (not is_first_image):
+                    
+
+                    if (not is_first_image and add_panoramic == True):
                         try:
                             panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
 
@@ -184,21 +192,21 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                             if growing: 
                                 last_image = new_image 
                                 flag_view = True
+                                capture_stack.set()
+                                add_panoramic = False
                             else:
                                 flag_view = False
-
-                            if growing:
-                                capture_stack.set()
+                                add_panoramic = False                                
 
                         except:
                             flag_view = False
+                            add_panoramic = False
                             pass
 
                     if is_first_image and (cv2.waitKey(1) & 0xFF == ord('i')):
                         panoramic = new_image.copy()
                         last_image = new_image.copy()
                         is_first_image = False
-
                         capture_stack.set()
 
                     if flag_view:
@@ -211,13 +219,9 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
 
                     if cv2.waitKey(1) & 0xFF == ord('p'):
                         x = datetime.datetime.now()
-                        cv2.imwrite('../data/panoramic_flir_{}_{}_{}_{}_{}.jpg'.format(x.hour,
+                        cv2.imwrite('../data/manual_stack_and_panoramic/stack_2/panoramic_flir_{}_{}_{}_{}_{}.tiff'.format(x.hour,
                                                             x.minute,x.day,x.month, x.year), panoramic[:,:,:])
-                        continue_recording=True             
-                        print ("Seguir con adquisición")
-                    
-                    if cv2.waitKey(1) & 0xFF == ord('s'):
-                        capture_stack.set()
+                        continue_recording=False             
                     
                     if keyboard.is_pressed('ENTER'):
                         print('Program is closing...')
@@ -225,7 +229,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
                         # Close figure
                         input('Done! Press Enter to exit...')
                         cv2.destroyAllWindows()
-                        continue_recording=False             
+                        continue_recording=False
 
                 #  Release image
                 #
