@@ -71,7 +71,7 @@ def acquire_and_display_images(cam, nodemap, nodemap_tldevice):
     """
     global continue_recording
 
-    sNodemap = cam.GetTLStreamNodeMap()
+    sNodemap = cam.GetTLStreamNodeMap() # Código para detección de cámara - excepción
 
     # Change bufferhandling mode to NewestOnly
     node_bufferhandling_mode = PySpin.CEnumerationPtr(sNodemap.GetNode('StreamBufferHandlingMode'))
@@ -316,7 +316,7 @@ def main():
     print('Library version: %d.%d.%d.%d' % (version.major, version.minor, version.type, version.build))
 
     # Retrieve list of cameras from the system
-    cam_list = system.GetCameras()
+    cam_list = system.GetCameras() #TODO: 
 
     num_cameras = cam_list.GetSize()
 
