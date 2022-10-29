@@ -2,20 +2,16 @@ from sys import path
 
 path.append('../')
 
+from modules.globals_DTO import *
 from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
-from modules.globals_DTO import *
 import modules.frame_validation as f_val
-
 import numpy as np
 from threading import Event, Thread
 
 class AppCV2:
     def __init__(self) -> None:
         
-        self.R = 0
-        self.C = 0
-
         self._is_first_image = True
         self._focus = True
         self._growing = True
@@ -50,7 +46,9 @@ class AppCV2:
             self._new_image_capture.clear()
 
     def panoramic_build(self, new_image, ret = False):
-        # self._new_image = new_image
+        global R
+        global C
+        self._new_image = new_image
 
         if self._image_analisys:
             self._new_image_capture.set() 
@@ -60,7 +58,7 @@ class AppCV2:
             if (not self._is_first_image) and self._focus:
                 try:           
                     # self._image_stack.append(self._new_image)
-                    self._panoramic, self._growing = pac.build(self._panoramic, self._last_image, self._new_image, self._mask_object)
+                    self._panoramic, self._growing, R, C = pac.build(self._panoramic, self._last_image, self._new_image, self._mask_object, R, C)
                     if self._growing:
                         self._last_image = self._new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                 except:
@@ -74,8 +72,10 @@ class AppCV2:
         return self._panoramic, self._growing
     
     def variables_restart(self):
-        self.R = 0
-        self.C = 0
+        global R
+        global C
+        R = 0
+        C = 0
 
         self._is_first_image = True
         self._focus = True

@@ -9,7 +9,9 @@ The implemented methods are:
 """
 
 # from threading import Thread
-from mask_extracting import Mask
+from sys import path
+path.append("../")
+from modules.mask_extracting import Mask
 from cv2 import matchTemplate, minMaxLoc, TM_CCOEFF_NORMED
 
 def default_search(image, mask: Mask) -> None: # lista de 1 elemento

@@ -14,16 +14,16 @@
         numpy ndarray: The module returns the panoramic image
         bool: Flag for indicate if panoramic image incorporate a new image or not
 """
-import sys
-sys.path.append('../modules')
-from globals_DTO import *
-from mask_extracting import Mask
-import mask_search
-import build_panoramic_image
+from sys import path
+path.append('../')
+# from modules.globals_DTO import *
+from modules.mask_extracting import Mask
+from modules import mask_search
+from modules import build_panoramic_image
 
 # Establecer conexión con la cámara. Adquirir imagen. --> OpenCV, PySpin, EasyPySpin
 
-def build (panoramic, last_image, new_image, mask: Mask):
+def build (panoramic, last_image, new_image, mask: Mask, R, C):
     """
     This method expands the panoramic image. For this, in addition to the parameters 
     it receives, it needs two global variables (R and C) from 'globals_DTO'. That 
@@ -47,13 +47,13 @@ def build (panoramic, last_image, new_image, mask: Mask):
         
         mask (Mask): Mask object from mask_extracting module
     """
-    global R #Fila inicial del frame
-    global C # Columna inicial del frame
+    # global R #Fila inicial del frame
+    # global C # Columna inicial del frame
     growing = False
 
     # Extracción/Obtención de máscara
     try:
-        mask.mask_by_simple_method(last_image, 50)
+        mask.mask_by_simple_method(last_image, 100)
     except:
         print ('Error. Falla en generación de máscara')
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']
@@ -84,11 +84,11 @@ def build (panoramic, last_image, new_image, mask: Mask):
     except:
         print ('Error. Falla en construcción de panorámica')
     if growing:
-        if (R+mask.traslation[0])>=0:
+        if (R+mask.traslation[0])>0:
             R=R+mask.traslation[0]
         else: R=0
 
-        if (C+ mask.traslation[1])>=0:
+        if (C+ mask.traslation[1])>0:
             C=C+ mask.traslation[1]
         else: C=0
-    return panoramic, growing
+    return panoramic, growing, R, C

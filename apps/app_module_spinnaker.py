@@ -203,22 +203,23 @@ class AppSpinnaker:
         return True
 
     def panoramic_build(self, new_image, ret):
-                  
+        global R
+        global C       
         if self._image_analisys:
             self.new_image_capture.set()
 
         if ret:
             if (not self.is_first_image) and self.focus:
                 try:
-                    self.panoramic, self.growing = pac.build(self.panoramic, self.last_image, self.new_image, self.mask_object)
+                    self.panoramic, self.growing, R, C = pac.build(self.panoramic, self.last_image, new_image, self.mask_object, R, C)# self.new_image, self.mask_object)
                     if self.growing:
-                        self.last_image = self.new_image 
+                        self.last_image = new_image # self.new_image 
                 except:
                     pass
 
             if self.is_first_image:
-                self.panoramic = self.new_image.copy()
-                self.last_image = self.new_image.copy()
+                self.panoramic = new_image.copy() # self.new_image.copy()
+                self.last_image = new_image.copy() # self.new_image.copy()
                 self.is_first_image = False
         
         return self.panoramic, self.growing
@@ -313,6 +314,27 @@ class AppSpinnaker:
 
         return result
 
+    
+    def variables_restart(self):
+        global R
+        global C
+        R = 0
+        C = 0
+
+        self._is_first_image = True
+        self._focus = True
+        self._growing = True
+
+        self._last_image = []
+        self._mask_object = Mask()
+        self._panoramic = np.zeros((640,480,3),dtype="uint8")
+        self._new_image = np.zeros((640,480,3),dtype="uint8")
+
+        self._image_stack =[]# np.zeros((640,480,3),dtype="uint8")
+
+        # Bandera para activar/desactivar el pre-análisis
+        self._image_analisys = False
+        print ("variables reestablecidas")
 
     def main(self):
         """

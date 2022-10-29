@@ -1,4 +1,6 @@
-from mask_extracting import Mask
+from sys import path
+path.append("../")
+from modules.mask_extracting import Mask
 
 MASK = Mask()
 
