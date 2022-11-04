@@ -8,7 +8,7 @@ from numpy import uint8
 sys.path.append('../')
 
 from apps.app_module_cv2 import AppCV2
-# from apps.app_module_spinnaker import AppSpinnaker
+from apps.app_module_spinnaker import AppSpinnaker
 
 from PySide6.QtGui import QGuiApplication, QImage
 from PySide6.QtQml import QQmlApplicationEngine
@@ -161,20 +161,23 @@ class Controlers(QObject):
                 engine.addImageProvider("myprovider", video_image)
                 engine.addImageProvider("panoprovider", parnoramic_image)
             if camera_type == 1:
-                # app_camera = AppCV2()
-                capture = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-                video_image = MyImageProvider(capture)
-                parnoramic_image = MyPanoramicProvider()
-                engine.addImageProvider("myprovider", video_image)
+                app_camera = AppSpinnaker()
+                video_image_spinnaker = SpinnakerImageProvider(app_camera)
+                parnoramic_image = SpinnakerPanoramicProvider()
+                engine.addImageProvider("myprovider", video_image_spinnaker)
                 engine.addImageProvider("panoprovider", parnoramic_image)
+
+                # capture = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+                # video_image = MyImageProvider(capture)
+                # parnoramic_image = MyPanoramicProvider()
+                # engine.addImageProvider("myprovider", video_image)
+                # engine.addImageProvider("panoprovider", parnoramic_image)
         else:
             if camera_type==0:
                 parnoramic_image.finish_capture()
                 video_image.finish_capture()  
                 
             
-
-
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
