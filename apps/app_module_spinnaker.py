@@ -363,17 +363,17 @@ class AppSpinnaker:
         print('Number of cameras detected: %d' % num_cameras)
 
         # Finish if there are no cameras
-        if num_cameras == 0:
+        # # # # if num_cameras == 0:
 
-            # Clear camera list before releasing system
-            cam_list.Clear()
+        # # # #     # Clear camera list before releasing system
+        # # # #     cam_list.Clear()
 
-            # Release system instance
-            system.ReleaseInstance()
+        # # # #     # Release system instance
+        # # # #     system.ReleaseInstance()
 
-            print('Not enough cameras!')
-            input('Done! Press Enter to exit...')
-            return False
+        # # # #     print('Not enough cameras!')
+        # # # #     input('Done! Press Enter to exit...')
+        # # # #     return False
 
         # Run example on each camera
         for i, cam in enumerate(cam_list):
@@ -387,7 +387,7 @@ class AppSpinnaker:
         # NOTE: Unlike the C++ examples, we cannot rely on pointer objects being automatically
         # cleaned up when going out of scope.
         # The usage of del is preferred to assigning the variable to None.
-        del cam
+        # # # del cam
 
         # Clear camera list before releasing system
         cam_list.Clear()
@@ -395,7 +395,7 @@ class AppSpinnaker:
         # Release system instance
         system.ReleaseInstance()
 
-        input('Done! Press Enter to exit...')
+        # input('Done! Press Enter to exit...')
         return result
 
 

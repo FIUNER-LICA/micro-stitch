@@ -87,7 +87,7 @@ class MyPanoramicProvider(QQuickImageProvider):
 class SpinnakerImageProvider(QQuickImageProvider):
 
     def __init__(self, app_spinnaker) -> None:
-        super(MyImageProvider, self).__init__(QQuickImageProvider.Image)
+        super(SpinnakerImageProvider, self).__init__(QQuickImageProvider.Image)
         self.cvimg = []
         
         self._lock = Lock()
@@ -102,6 +102,7 @@ class SpinnakerImageProvider(QQuickImageProvider):
 
         with self._lock:
             self.frame = self.capture.new_image
+            new_image = self.frame
         self.height, self.width, self.depth = self.frame.shape
         self.cvimg = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
         self.cvimg = QImage (self.cvimg.data, self.width, self.height, self.width*self.depth, QImage.Format_RGB888)       
@@ -118,12 +119,11 @@ class SpinnakerImageProvider(QQuickImageProvider):
 
 class SpinnakerPanoramicProvider(QQuickImageProvider):
 
-    def __init__(self, app_spinnaker) -> None:
-        super(MyImageProvider, self).__init__(QQuickImageProvider.Image)
+    def __init__(self) -> None:
+        super(SpinnakerPanoramicProvider, self).__init__(QQuickImageProvider.Image)
         self.cvimg = []
         
-        self._build_panoramic = app_spinnaker
-
+        self._build_panoramic = AppSpinnaker()
     def requestImage(self, p_str, size, u):
         global new_image
         global ret
