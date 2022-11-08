@@ -23,9 +23,12 @@ class AppSpinnaker:
         self.system = None
         # Run camera
         self.cam = None
+        self.system = None
         # Aquire image
         self.nodemap = None
         self.nodemap_tldevice = None
+        self.image_result = None
+        self.is_acquire = False
 
     # Bandera para activar/desactivar el pre-análisis
         self.focus = True
@@ -46,20 +49,21 @@ class AppSpinnaker:
         self.mask_object = Mask()
         self.panoramic = np.zeros((640,480,3),dtype="uint8")
         self.last_image = np.zeros((640,480,3),dtype="uint8")
+        self._main()
 
-    def focus_analisys(self, threshold, args):
-        self.new_image
-        while (True):
-            self.new_image_capture.wait()
-            try:
-                focus_value = f_val.focus_validation(self.new_image, args)
-                if focus_value[1] > threshold: 
-                    self.focus=True
-                else:
-                    self.focus = False 
-            except: 
-                print ("Error en cálculo de foco. Revise los parámetros.")
-            self.new_image_capture.clear()
+    # def focus_analisys(self, threshold, args):
+    #     self.new_image
+    #     while (True):
+    #         self.new_image_capture.wait()
+    #         try:
+    #             focus_value = f_val.focus_validation(self.new_image, args)
+    #             if focus_value[1] > threshold: 
+    #                 self.focus=True
+    #             else:
+    #                 self.focus = False 
+    #         except: 
+    #             print ("Error en cálculo de foco. Revise los parámetros.")
+    #         self.new_image_capture.clear()
 
     def handle_close(self, evt):
         """
@@ -71,7 +75,6 @@ class AppSpinnaker:
 
         global continue_recording
         continue_recording = False
-
 
     def acquire_and_display_images(self):#, cam, nodemap, nodemap_tldevice):
         """
@@ -86,28 +89,29 @@ class AppSpinnaker:
         :return: True if successful, False otherwise.
         :rtype: bool
         """
-        sNodemap = self.cam.GetTLStreamNodeMap() # Código para detección de cámara - excepción
+        if not self.is_acquire:
+            sNodemap = self.cam.GetTLStreamNodeMap() # Código para detección de cámara - excepción
 
-        # Change bufferhandling mode to NewestOnly
-        node_bufferhandling_mode = PySpin.CEnumerationPtr(sNodemap.GetNode('StreamBufferHandlingMode'))
-        if not PySpin.IsAvailable(node_bufferhandling_mode) or not PySpin.IsWritable(node_bufferhandling_mode):
-            print('Unable to set stream buffer handling mode.. Aborting...')
-            return False
+            # Change bufferhandling mode to NewestOnly
+            node_bufferhandling_mode = PySpin.CEnumerationPtr(sNodemap.GetNode('StreamBufferHandlingMode'))
+            if not PySpin.IsAvailable(node_bufferhandling_mode) or not PySpin.IsWritable(node_bufferhandling_mode):
+                print('Unable to set stream buffer handling mode.. Aborting...')
+                return False
 
-        # Retrieve entry node from enumeration node
-        node_newestonly = node_bufferhandling_mode.GetEntryByName('NewestOnly')
-        if not PySpin.IsAvailable(node_newestonly) or not PySpin.IsReadable(node_newestonly):
-            print('Unable to set stream buffer handling mode.. Aborting...')
-            return False
+            # Retrieve entry node from enumeration node
+            node_newestonly = node_bufferhandling_mode.GetEntryByName('NewestOnly')
+            if not PySpin.IsAvailable(node_newestonly) or not PySpin.IsReadable(node_newestonly):
+                print('Unable to set stream buffer handling mode.. Aborting...')
+                return False
 
-        # Retrieve integer value from entry node
-        node_newestonly_mode = node_newestonly.GetValue()
+            # Retrieve integer value from entry node
+            node_newestonly_mode = node_newestonly.GetValue()
 
-        # Set integer value from entry node as new value of enumeration node
-        node_bufferhandling_mode.SetIntValue(node_newestonly_mode)
+            # Set integer value from entry node as new value of enumeration node
+            node_bufferhandling_mode.SetIntValue(node_newestonly_mode)
 
-        print('*** IMAGE ACQUISITION ***\n')
-        try:
+            print('*** IMAGE ACQUISITION ***\n')
+        # try:
             node_acquisition_mode = PySpin.CEnumerationPtr(self.nodemap.GetNode('AcquisitionMode'))
             if not PySpin.IsAvailable(node_acquisition_mode) or not PySpin.IsWritable(node_acquisition_mode):
                 print('Unable to set acquisition mode to continuous (enum retrieval). Aborting...')
@@ -156,6 +160,7 @@ class AppSpinnaker:
 
             # Close program
             print('Press enter to close the program..')
+            self.is_acquire = True
 
             # Figure(1) is default so you can omit this line. Figure(0) will create a new window every time program hits this line
             # fig = plt.figure(1)
@@ -165,61 +170,60 @@ class AppSpinnaker:
 
             # Retrieve and display images
 
-            try:
-                #  Retrieve next received image
-                #
-                #  *** NOTES ***
-                #  Capturing an image houses images on the camera buffer. Trying
-                #  to capture an image that does not exist will hang the camera.
-                #
-                #  *** LATER ***
-                #  Once an image from the buffer is saved and/or no longer
-                #  needed, the image must be released in order to keep the
-                #  buffer from filling up.
-                
-                image_result = self.cam.GetNextImage(1000)
+        try:
+            #  Retrieve next received image
+            #
+            #  *** NOTES ***
+            #  Capturing an image houses images on the camera buffer. Trying
+            #  to capture an image that does not exist will hang the camera.
+            #
+            #  *** LATER ***
+            #  Once an image from the buffer is saved and/or no longer
+            #  needed, the image must be released in order to keep the
+            #  buffer from filling up.
+            
+            self.image_result = self.cam.GetNextImage(1000)
+            #  Ensure image completion
+            if self.image_result.IsIncomplete():
+                print('Image incomplete with image status %d ...' % self.image_result.GetImageStatus())
 
-                #  Ensure image completion
-                if image_result.IsIncomplete():
-                    print('Image incomplete with image status %d ...' % image_result.GetImageStatus())
-
-                else:                    
-                    # Getting the image data as a numpy array
-                    self.new_image = image_result.GetNDArray()
-                    ########################
-                    image_result.Release()
-
-            except PySpin.SpinnakerException as ex:
-                print('Error: %s' % ex)
-                return False
+            else:                    
+                # Getting the image data as a numpy array
+                self.new_image = self.image_result.GetNDArray()
+                ########################
+                self.image_result.Release()
 
         except PySpin.SpinnakerException as ex:
             print('Error: %s' % ex)
             return False
 
+        # except PySpin.SpinnakerException as ex:
+        #     print('Error: %s' % ex)
+        #     return False
+
         return True
 
-    def panoramic_build(self, new_image, ret):
-        global R
-        global C       
-        if self._image_analisys:
-            self.new_image_capture.set()
+    # def panoramic_build(self, new_image, ret):
+    #     global R
+    #     global C       
+    #     if self._image_analisys:
+    #         self.new_image_capture.set()
 
-        if ret:
-            if (not self.is_first_image) and self.focus:
-                try:
-                    self.panoramic, self.growing, R, C = pac.build(self.panoramic, self.last_image, new_image, self.mask_object, R, C)# self.new_image, self.mask_object)
-                    if self.growing:
-                        self.last_image = new_image # self.new_image 
-                except:
-                    pass
+    #     if ret:
+    #         if (not self.is_first_image) and self.focus:
+    #             try:
+    #                 self.panoramic, self.growing, R, C = pac.build(self.panoramic, self.last_image, new_image, self.mask_object, R, C)# self.new_image, self.mask_object)
+    #                 if self.growing:
+    #                     self.last_image = new_image # self.new_image 
+    #             except:
+    #                 pass
 
-            if self.is_first_image:
-                self.panoramic = new_image.copy() # self.new_image.copy()
-                self.last_image = new_image.copy() # self.new_image.copy()
-                self.is_first_image = False
+    #         if self.is_first_image:
+    #             self.panoramic = new_image.copy() # self.new_image.copy()
+    #             self.last_image = new_image.copy() # self.new_image.copy()
+    #             self.is_first_image = False
         
-        return self.panoramic, self.growing
+    #     return self.panoramic, self.growing
 
     def run_single_camera(self, cam):
         """
@@ -239,7 +243,6 @@ class AppSpinnaker:
 
             # Initialize camera
             self.cam.Init()
-
             # Retrieve GenICam nodemap
             self.nodemap = self.cam.GetNodeMap()
 
@@ -257,30 +260,29 @@ class AppSpinnaker:
             result = False
 
         return result
-
     
-    def variables_restart(self):
-        global R
-        global C
-        R = 0
-        C = 0
+    # def variables_restart(self):
+    #     global R
+    #     global C
+    #     R = 0
+    #     C = 0
 
-        self._is_first_image = True
-        self._focus = True
-        self._growing = True
+    #     self._is_first_image = True
+    #     self._focus = True
+    #     self._growing = True
 
-        self._last_image = []
-        self._mask_object = Mask()
-        self._panoramic = np.zeros((640,480,3),dtype="uint8")
-        self._new_image = np.zeros((640,480,3),dtype="uint8")
+    #     self._last_image = []
+    #     self._mask_object = Mask()
+    #     self._panoramic = np.zeros((640,480,3),dtype="uint8")
+    #     self._new_image = np.zeros((640,480,3),dtype="uint8")
 
-        self._image_stack =[]# np.zeros((640,480,3),dtype="uint8")
+    #     self._image_stack =[]# np.zeros((640,480,3),dtype="uint8")
 
-        # Bandera para activar/desactivar el pre-análisis
-        self._image_analisys = False
-        print ("variables reestablecidas")
+    #     # Bandera para activar/desactivar el pre-análisis
+    #     self._image_analisys = False
+    #     print ("variables reestablecidas")
 
-    def main(self):
+    def _main(self):
         """
         Example entry point; notice the volume of data that the logging event handler
         prints out on debug despite the fact that very little really happens in this
@@ -293,14 +295,14 @@ class AppSpinnaker:
         result = True
 
         # Retrieve singleton reference to system object
-        system = PySpin.System.GetInstance()
+        self.system = PySpin.System.GetInstance()
 
         # Get current library version
-        version = system.GetLibraryVersion()
+        version = self.system.GetLibraryVersion()
         print('Library version: %d.%d.%d.%d' % (version.major, version.minor, version.type, version.build))
 
         # Retrieve list of cameras from the system
-        self.cam_list = system.GetCameras() #TODO: 
+        self.cam_list = self.system.GetCameras() #TODO: 
 
         self.num_cameras = self.cam_list.GetSize()
 
@@ -313,7 +315,7 @@ class AppSpinnaker:
             self.cam_list.Clear()
 
             # Release system instance
-            system.ReleaseInstance()
+            self.system.ReleaseInstance()
 
             print('Not enough cameras!')
             # input('Done! Press Enter to exit...')
@@ -323,21 +325,20 @@ class AppSpinnaker:
         for i, cam in enumerate(self.cam_list):
 
             print('Running example for camera %d...' % i)
-
             result &= self.run_single_camera(cam)
             print('Camera %d example complete... \n' % i)
-
         # Release reference to camera
         # NOTE: Unlike the C++ examples, we cannot rely on pointer objects being automatically
         # cleaned up when going out of scope.
         # The usage of del is preferred to assigning the variable to None.
-        # # # del cam
+        # del cam
+        
 
         # # Clear camera list before releasing system
         # self.cam_list.Clear()
 
         # # Release system instance
-        # system.ReleaseInstance()
+        # self.system.ReleaseInstance()
 
         # input('Done! Press Enter to exit...')
         return result
@@ -347,7 +348,6 @@ class AppSpinnaker:
         result = True
         result &= self.acquire_and_display_images()#self.cam, self.nodemap, self.nodemap_tldevice)
         return result, self.new_image
-
 
     def release(self):
          #  End acquisition
@@ -363,6 +363,8 @@ class AppSpinnaker:
 
         # Release system instance
         self.system.ReleaseInstance()
+
+        self.is_acquire = False
 
         # input('Done! Press Enter to exit...')
         return False

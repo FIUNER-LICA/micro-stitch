@@ -161,7 +161,7 @@ class Controlers(QObject):
 
             if camera_type == 1:
                 app_camera = AppSpinnaker()
-                app_camera.main()
+            #    app_camera.main()
                 video_image = SpinnakerImageProvider(app_camera)
                 parnoramic_image = SpinnakerPanoramicProvider()
 
