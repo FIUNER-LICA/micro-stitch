@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # This Python file uses the following encoding: utf-8
 import sys
 import os
@@ -5,7 +6,7 @@ from pathlib import Path
 
 from numpy import uint8
 
-sys.path.append('../')
+sys.path.append(os.getcwd())
 
 from apps.app_module_cv2 import AppCV2
 
