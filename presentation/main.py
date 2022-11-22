@@ -14,7 +14,7 @@ try:
 except ImportError as error:
     print ("Error de importación", error.msg)  
 
-from PySide6.QtGui import QGuiApplication, QImage
+from PySide6.QtGui import QGuiApplication, QImage, QIcon
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtQuick import QQuickImageProvider
 from PySide6.QtCore import QObject, Signal, Slot, QSize, Qt
@@ -22,6 +22,16 @@ from PySide6.QtCore import QObject, Signal, Slot, QSize, Qt
 from threading import Lock
 import cv2
 import numpy as np
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 new_image = np.zeros((640,480,3),dtype="uint8")
 ret = False
@@ -176,8 +186,9 @@ class Controlers(QObject):
             
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
-    engine = QQmlApplicationEngine()
     
+    engine = QQmlApplicationEngine()
+    # app.setWindowIcon(QIcon(('resources/images/logo.png')))
     qml_file = os.fspath(Path(__file__).resolve().parent / "main.qml")
     
     controlers = Controlers()

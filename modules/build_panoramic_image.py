@@ -5,10 +5,10 @@ def store_valid_images(image):
     pass
 
 def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c):
-    print("llega hasta aca 1")
-    print (tras_r)
-    print (tras_c)
-    print (R, C)
+    # print("llega hasta aca 1")
+    # print (tras_r)
+    # print (tras_c)
+    # print (R, C)
     enlarged_rows = panoramic.shape[0]
     enlarged_column = panoramic.shape[1]
 
@@ -107,10 +107,10 @@ def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c
     panoramic_return = np.ndarray(shape = (enlarged_rows , enlarged_column , 3), dtype = np.uint8) 
     # print("llega hasta aca 3")
     panoramic_return [loc_pixels_pano[0] : loc_pixels_pano[1],loc_pixels_pano[2] : loc_pixels_pano[3],:] = panoramic
-    print("llega hasta aca 4 \n", image.shape)
-    print (panoramic_return [loc_pixels_img[0]:loc_pixels_img[1],loc_pixels_img[2]:loc_pixels_img[3],:].shape)
+    # print("llega hasta aca 4 \n", image.shape)
+    # print (panoramic_return [loc_pixels_img[0]:loc_pixels_img[1],loc_pixels_img[2]:loc_pixels_img[3],:].shape)
     panoramic_return [loc_pixels_img[0]:loc_pixels_img[1],loc_pixels_img[2]:loc_pixels_img[3],:] = image
-    print("llega hasta aca 5")
+    # print("llega hasta aca 5")
     return panoramic_return
 
     
