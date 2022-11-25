@@ -176,7 +176,7 @@ class Controlers(QObject):
                 #parnoramic_image = SpinnakerPanoramicProvider()
 
             engine.addImageProvider("myprovider", video_image)
-            engine.addImageProvider("panoprovider", parnoramic_image)
+            # engine.addImageProvider("panoprovider", parnoramic_image)
 
         else:
             if camera_type==0:
