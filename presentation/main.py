@@ -164,16 +164,16 @@ class Controlers(QObject):
         global engine
         global new_image
         if play:
-            if camera_type==0:
+            if camera_type==1:
                 capture = cv2.VideoCapture(0,cv2.CAP_DSHOW)
                 video_image = MyImageProvider(capture)
-                parnoramic_image = MyPanoramicProvider()
+                #parnoramic_image = MyPanoramicProvider()
 
-            if camera_type == 1:
+            if camera_type == 0:
                 app_camera = AppSpinnaker()
             #    app_camera.main()
                 video_image = SpinnakerImageProvider(app_camera)
-                parnoramic_image = SpinnakerPanoramicProvider()
+                #parnoramic_image = SpinnakerPanoramicProvider()
 
             engine.addImageProvider("myprovider", video_image)
             engine.addImageProvider("panoprovider", parnoramic_image)
@@ -182,7 +182,15 @@ class Controlers(QObject):
             if camera_type==0:
                 parnoramic_image.finish_capture()
                 video_image.finish_capture()  
-                
+    @Slot(bool)
+    def panoramic_init(self):
+        global video_image
+        global parnoramic_image
+        global engine
+        global new_image
+        parnoramic_image = SpinnakerPanoramicProvider()
+        engine.addImageProvider("panoprovider", parnoramic_image)
+
             
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)

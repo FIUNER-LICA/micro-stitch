@@ -39,7 +39,7 @@ class Mask:
         self._traslation = [0,0]
         self._satisfactory_criterion = False
 
-    def mask_by_simple_method(self, image, r = 50):       
+    def mask_by_simple_method(self, image, r = 100):       
         """
         The mask is extracted from the center of the image.\n
         This method assign the position and the value of all pixels on

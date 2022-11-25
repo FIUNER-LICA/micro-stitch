@@ -53,7 +53,7 @@ def build (panoramic, last_image, new_image, mask: Mask, R, C):
 
     # Extracción/Obtención de máscara
     try:
-        mask.mask_by_simple_method(last_image, 100)
+        mask.mask_by_simple_method(last_image, 200)
     except:
         print ('Error. Falla en generación de máscara')
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']

@@ -249,7 +249,7 @@ Window {
                         font.italic: true
                         font.pointSize: 12
                         flat: true
-                        model: ["Open CV camera", "Spinnaker camera"]
+                        model: ["Spinnaker camera", "Open CV camera"]
                         delegate: ItemDelegate {
                             width: camType.width
                             contentItem: Text {
@@ -365,7 +365,7 @@ Window {
                     Text {
                         id: controlsTitle
                         color: "#bcd8d9"
-                        text: qsTr("Controlers")
+                        text: qsTr("Controllers")
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.top: parent.top
@@ -422,8 +422,7 @@ Window {
                                 RectangleGlowEffect{}
                             onClicked:{ controlers.camera_selector(true, camType.currentIndex)
                                 timer_button.running = true
-                                timer_button_pano.running = true
-                                // playVideoBtn.text = qsTr("Camera connected")}
+                                // timer_button_pano.running = true
                                 }
                             
                             }
@@ -490,6 +489,10 @@ Window {
                         colorDefault: "#00bcd8d9"
                         btnIconSource: "../resources/icons/save.svg"
                         RectangleGlowEffect{}
+                        onClicked:{ controlers.panoramic_init(true)
+                                // timer_button.running = true
+                                timer_button_pano.running = true
+                                }
                     }
                     
 
