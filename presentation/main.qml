@@ -489,7 +489,7 @@ Window {
                         colorDefault: "#00bcd8d9"
                         btnIconSource: "../resources/icons/save.svg"
                         RectangleGlowEffect{}
-                        onClicked:{ controlers.panoramic_init(true)
+                        onClicked:{ controlers.panoramic_init()
                                 // timer_button.running = true
                                 timer_button_pano.running = true
                                 }
