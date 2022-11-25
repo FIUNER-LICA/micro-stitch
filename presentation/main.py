@@ -182,7 +182,7 @@ class Controlers(QObject):
             if camera_type==0:
                 parnoramic_image.finish_capture()
                 video_image.finish_capture()  
-    @Slot(bool)
+    @Slot()
     def panoramic_init(self):
         global video_image
         global parnoramic_image
