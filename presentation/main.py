@@ -3,8 +3,6 @@ import sys
 import os
 from pathlib import Path
 
-from numpy import uint8
-
 sys.path.append('../')
 
 from apps.app_module_cv2 import AppCV2
