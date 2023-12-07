@@ -113,6 +113,6 @@ def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c
     # print("llega hasta aca 5")
     return panoramic_return
 
-    
+ 
 def overlap_sector_combination_linear_interp(panoramic,image, F, C, tras_f, tras_c):
     pass
