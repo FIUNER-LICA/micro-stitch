@@ -162,7 +162,7 @@ class Controlers(QObject):
         global engine
         global new_image
         if play:
-            if camera_type==1:
+            if camera_type == 1:
                 capture = cv2.VideoCapture(0,cv2.CAP_ANY)
                 video_image = MyImageProvider(capture)
                 #parnoramic_image = MyPanoramicProvider()
