@@ -6,6 +6,7 @@ from modules.mask_extracting import Mask
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 import modules.frame_validation as f_val
+from skimage.metrics import structural_similarity as ssim
 
 import cv2
 import numpy as np
@@ -77,7 +78,12 @@ t_end = perf_counter()
 counter = 1
 frame_rate = 0
 n_prom = 10
-frame_rate_line = "measure FPS: " + str(frame_rate) + "\n"
+
+changing_text = "measure FPS: " + str(frame_rate) + "\n"+\
+                "var Laplacian: " + \
+                "var Sobel:  " + \
+                "SSIM: "    
+    
 while (cap.isOpened()):
     ret, new_image = cap.read()
     image =  new_image.copy()
@@ -87,11 +93,21 @@ while (cap.isOpened()):
         counter += 1
     else:
         frame_rate /= n_prom
-        frame_rate_line = "measure FPS: " + str(round(frame_rate,2)) + "\n"
+        #frame_rate_line = "measure FPS: " + str(round(frame_rate,2)) + "\n"
+        var_lap = str(round(cv2.Laplacian(new_image,cv2.CV_64F,0).var(),2))
+        var_sobel = str(round(cv2.Sobel(new_image,cv2.CV_64F,1,0,ksize=5).var(),2))
+        #ssim = str(round(ssim(last_image, new_image,channel_axis=2, multichannel=True ),2))
+
+        changing_text = "measured FPS: " + str(round(frame_rate,2)) + "\n" + \
+                        "var Laplacian: " + var_lap   + "\n" + \
+                        "var Sobel:  " + var_sobel + "\n"  + \
+                        "SSIM: "  
+
+
         frame_rate = 0
         counter = 1
 
-    text = fix_text + frame_rate_line 
+    text = fix_text + changing_text 
 
        
     cv2.rectangle(image, (0,0), (200,75), (0,0,0), -1)
