@@ -43,10 +43,10 @@ The tool features a user-friendly interface built with QML and Qt. Key aspects o
 - [Describe Key Feature 1]
 - [Describe Key Feature 2]
    ...
-### video demo
+### Video demo
 [![Video Demo](https://drive.google.com/file/d/1v181VB4v7eX5L7sib930gmXYPKha3TLg/view)](https://drive.google.com/uc?export=download&id=1v181VB4v7eX5L7sib930gmXYPKha3TLg)
 
-https://drive.google.com/file/d/1v181VB4v7eX5L7sib930gmXYPKha3TLg/view
+
 To launch the tool with the graphical user interface, run:
 
 ```bash
