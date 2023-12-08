@@ -10,10 +10,33 @@ import modules.frame_validation as f_val
 import cv2
 import numpy as np
 import datetime
+
 from threading import Event, Thread
 
+from time import perf_counter, time_ns
+
+
+def focus_analisys(threshold, args):
+    global new_image
+    global focus
+    while (True):
+        new_image_capture.wait()
+        try:
+            
+            focus_value = f_val.focus_validation(new_image, args)
+            if focus_value[1] > threshold:
+                print (focus_value[1], threshold)
+                focus=True
+            else:
+                focus = False 
+        except: 
+            print ("Error en cálculo de foco. Revise los parámetros.")
+        new_image_capture.clear()
+
+
+
 # Inicio de variables, parámetros y creación de objetos
-# global R #Fila inicial del frame
+# global R # Fila inicial del frame
 # global C # Columna inicial del frame
 R = 0
 C = 0
@@ -34,23 +57,6 @@ cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) #
 
 #cap = cv2.VideoCapture(1, cv2.CAP_DSHOW) 
 
-def focus_analisys(threshold, args):
-    global new_image
-    global focus
-    while (True):
-        new_image_capture.wait()
-        try:
-            
-            focus_value = f_val.focus_validation(new_image, args)
-            if focus_value[1] > threshold:
-                print (focus_value[1], threshold)
-                focus=True
-            else:
-                focus = False 
-        except: 
-            print ("Error en cálculo de foco. Revise los parámetros.")
-        new_image_capture.clear()
-
 # Bandera para activar/desactivar el pre-análisis
 image_analisys = False
 
@@ -58,10 +64,47 @@ new_image_capture = Event()
 
 pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
 
+coordinates = (10,20)
+font = cv2.FONT_HERSHEY_PLAIN
+fontScale = 1
+color = (255,255,255)
+thickness = 1
+fix_text = "API Backend: " + cap.getBackendName()\
+            + '\n' + "cv2 fps: " + str(cap.get(cv2.CAP_PROP_FPS)) + '\n' 
+
+t_end = time_ns()
+
+counter = 1
+frame_rate = 0
+n_prom = 5000
 
 while (cap.isOpened()):
+    
+    if counter % n_prom != 0:
+        frame_rate += 1/(time_ns()-t_end)
+        counter += 1
+    else:
+        frame_rate /= n_prom
+        
+        frame_rate = 0
+        counter = 1
+    
+    text = fix_text + "measure FPS: " + str(frame_rate) + "\n"
+
     ret, new_image = cap.read()
-    cv2.imshow('new_image',new_image)
+    image =  new_image.copy()
+
+    cv2.rectangle(image, (0,0), (200,75), (0,0,0), -1)
+    coordinates = (10,20)
+
+    for line in text.split('\n'):
+        cv2.putText(image, line , coordinates , font, fontScale, color, thickness, cv2.LINE_AA)
+        coordinates = (coordinates[0], coordinates[1] + 15)
+    
+    cv2.imshow('new_image',image)
+
+
+
 
     if image_analisys:
         pre_analisys.start()
@@ -69,10 +112,10 @@ while (cap.isOpened()):
     
     if ret == True:
         #Dar inicio al stream y formación de panorámica
-        if (not is_first_image) and focus:
+        if not is_first_image: # and focus:
             try:           
                 image_stack.append(new_image)
-                panoramic, growing = pac.build(panoramic, last_image, new_image, mask_object)
+                panoramic, growing, R, C = pac.build(panoramic, last_image, new_image, mask_object, R, C)
                 if growing:
                     last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                     flag_view = True
@@ -80,7 +123,7 @@ while (cap.isOpened()):
                     flag_view = True
             except:
                 flag_view = False
-                pass
+                
 
         if is_first_image:# and (cv2.waitKey(1) & 0xFF == ord('i')):
             panoramic = new_image.copy()
@@ -92,7 +135,7 @@ while (cap.isOpened()):
             cv2.imshow('Panorámica',view)
             # cv2.resizeWindow('Panorámica', 700, 500)
 
-        if cv2.waitKey(1) & 0xFF == ord('q') or cv2.getWindowProperty('new_image',cv2.WND_PROP_VISIBLE) < 1:
+        if cv2.waitKey(5) & 0xFF == ord('q') or cv2.getWindowProperty('new_image',cv2.WND_PROP_VISIBLE) < 1:
             break
 
         if cv2.waitKey(1) & 0xFF == ord('p'):
@@ -101,6 +144,7 @@ while (cap.isOpened()):
             # cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
             # cv2.imwritemulti('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)#[:,:,:])
             break
+    t_end = time_ns()
 
 cv2.destroyAllWindows()
 cap.release()
