@@ -77,7 +77,7 @@ Window {
 
             Timer {
                 id: timer_button_pano
-                interval: 10
+                interval: 1
                 repeat: true
                 running: false
                 triggeredOnStart: true

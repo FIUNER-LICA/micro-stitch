@@ -9,7 +9,7 @@ Rectangle{
             
             implicitWidth: 4
             implicitHeight: 4
-            border.width: 1
+            border.width: 0
 
             radius: 5
             x: -1
@@ -33,12 +33,12 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "x"
-                duration: 8000
+                duration: 1000
                 // running: true
                 from: initX
                 to: snakeGlow.stopX + x
                 easing.type: Easing.Linear
-                 Component.onCompleted: {
+                Component.onCompleted: {
             
             console.log(snakeGlow.stopX + x)}
 
@@ -47,9 +47,9 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "y"
-                duration: 8000
-                from: initY 
-                to: snakeGlow.stopY+ y
+                duration: 1000
+                from: snakeGlow.initY 
+                to: snakeGlow.stopY+ snakeGlow.y
                 easing.type: Easing.Linear
 
                 // running: true
@@ -58,10 +58,10 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "x"
-                duration: 8000
+                duration: 1000
                 // running: true
-                from: snakeGlow.stopX + x
-                to: initX
+                from: snakeGlow.stopX + snakeGlow.x
+                to: snakeGlow.initX
                 easing.type: Easing.Linear
 
             }
@@ -69,7 +69,7 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "y"
-                duration: 8000
+                duration: 1000
                 // running: true
                 from :snakeGlow.stopY + y
                 to: initY  
@@ -81,8 +81,8 @@ Rectangle{
 
         layer.enabled: true
         layer.effect: Glow {
-            radius: 32
-                            spread: 0.8
+            radius: 1
+                            spread: 0.5
                             color: "#bcd8d9"//"#c3613c"
                             transparentBorder: true
                         }
