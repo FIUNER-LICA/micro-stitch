@@ -30,7 +30,7 @@ new_image = np.zeros((640,480,3),dtype="uint8")
 image_stack =[]# np.zeros((640,480,3),dtype="uint8")
 
 
-#cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
+cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
 
 #cap = cv2.VideoCapture(1, cv2.CAP_DSHOW) 
 
@@ -61,6 +61,7 @@ pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
 
 while (cap.isOpened()):
     ret, new_image = cap.read()
+    cv2.imshow('new_image',new_image)
 
     if image_analisys:
         pre_analisys.start()
@@ -91,14 +92,14 @@ while (cap.isOpened()):
             cv2.imshow('Panorámica',view)
             # cv2.resizeWindow('Panorámica', 700, 500)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q') or cv2.getWindowProperty('new_image',cv2.WND_PROP_VISIBLE) < 1:
             break
 
         if cv2.waitKey(1) & 0xFF == ord('p'):
             x = datetime.datetime.now()
             image_stack = np.array(image_stack)
             # cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
-            cv2.imwritemulti('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)#[:,:,:])
+            # cv2.imwritemulti('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)#[:,:,:])
             break
 
 cv2.destroyAllWindows()
