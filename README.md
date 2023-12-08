@@ -44,7 +44,7 @@ The tool features a user-friendly interface built with QML and Qt. Key aspects o
 - [Describe Key Feature 2]
    ...
 ### Video demo
-[![Video Demo](https://drive.google.com/file/d/1v181VB4v7eX5L7sib930gmXYPKha3TLg/view)](https://drive.google.com/uc?export=download&id=1v181VB4v7eX5L7sib930gmXYPKha3TLg)
+[![Video Demo]()](https://drive.google.com/uc?export=download&id=1zKl5TwIeY8eJxJBBhQd9CDimP5wHXRG4)
 
 
 To launch the tool with the graphical user interface, run:
