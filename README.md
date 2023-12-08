@@ -19,7 +19,7 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
 
 - **Identification of Intrinsic Aberrations:** Tests on the optical microscope have also allowed the identification of sources of intrinsic instrument aberrations, contributing to improving the technique's robustness.
 
-# Clonning de respository
+# Clonning de repository
 
 1 - Clone the repository
 
