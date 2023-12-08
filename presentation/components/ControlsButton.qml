@@ -16,7 +16,7 @@ Button  {
         id: internal
 
         property var dynamicColor: {if(modernButton.down){ 
-                                   modernButton.down ? colorPressed: colorDefault
+                                   modernButton.down ? modernButton.colorPressed: modernButton.colorDefault
                                     } else {
                                     modernButton.hovered? colorMouseOver : colorDefault
                                    }
@@ -29,7 +29,7 @@ Button  {
                 modernButton.hovered ? zoomAumented.running=true: zoomAumented.running=false
                 isHover = true
             } else { if(isHover){
-                modernButton.hovered ? zoomDecreazed.running=false: zoomDecreazed.running=true
+                modernButton.hovered ? zoomDecreased.running=false: zoomDecreased.running=true
                 isHover = false
             }
             }
@@ -51,11 +51,11 @@ Button  {
         contentItem: Item{
             Image {
                 id: iconBtn
-                source: btnIconSource
+                source: modernButton.btnIconSource
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: iconSize
-                width: iconSize
+                height: modernButton.iconSize
+                width: modernButton.iconSize
                 visible: false
                 fillMode: Image.PreserveAspectFit
                 antialiasing: false
@@ -77,7 +77,7 @@ Button  {
                         running: false // internal.scaledBtn
                                 }
         NumberAnimation { 
-                        id: zoomDecreazed
+                        id: zoomDecreased
                         target: modernButton
                         property : "scale"
                         from: 1.05

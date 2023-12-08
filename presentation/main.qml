@@ -600,20 +600,20 @@ Window {
                 anchors.leftMargin: 10
             }
 
-            Label {
-                id: labelRightInfo
-                color: "#84a5a6"
-                text: qsTr("| HOME")
-                anchors.left: labelLeftInfo.right
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignVCenter
-                anchors.rightMargin: 10
-                anchors.leftMargin: 0
-                font.pointSize: 10
-            }
+            // Label {
+            //     id: labelRightInfo
+            //     color: "#84a5a6"
+            //     text: qsTr("| HOME")
+            //     anchors.left: labelLeftInfo.right
+            //     anchors.right: parent.right
+            //     anchors.top: parent.top
+            //     anchors.bottom: parent.bottom
+            //     horizontalAlignment: Text.AlignRight
+            //     verticalAlignment: Text.AlignVCenter
+            //     anchors.rightMargin: 10
+            //     anchors.leftMargin: 0
+            //     font.pointSize: 10
+            // }
         }
 
         Row {
