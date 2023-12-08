@@ -9,7 +9,7 @@ Rectangle {
                 color: "#00ffffff"
                 radius: 6
                 border.color: "#bcd8d9"
-                border.width: 2
+                border.width: 1
                 anchors.fill: parent
                 layer.enabled: true
                 layer.effect: Glow {

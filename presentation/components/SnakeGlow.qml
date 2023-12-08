@@ -9,6 +9,8 @@ Rectangle{
             
             implicitWidth: 4
             implicitHeight: 4
+            border.width: 1
+
             radius: 5
             x: -1
             y: -1
