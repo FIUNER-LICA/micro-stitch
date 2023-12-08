@@ -33,7 +33,7 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "x"
-                duration: 1000
+                duration: 2000
                 // running: true
                 from: initX
                 to: snakeGlow.stopX + x
@@ -47,7 +47,7 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "y"
-                duration: 1000
+                duration: 2000
                 from: snakeGlow.initY 
                 to: snakeGlow.stopY+ snakeGlow.y
                 easing.type: Easing.Linear
@@ -58,7 +58,7 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "x"
-                duration: 1000
+                duration: 2000
                 // running: true
                 from: snakeGlow.stopX + snakeGlow.x
                 to: snakeGlow.initX
@@ -69,7 +69,7 @@ Rectangle{
                 target: snakeGlow
                 
                 property : "y"
-                duration: 1000
+                duration: 2000
                 // running: true
                 from :snakeGlow.stopY + y
                 to: initY  
