@@ -1,1 +1,0 @@
-Publicación de resultados.
