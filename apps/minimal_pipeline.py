@@ -110,7 +110,7 @@ while (cap.isOpened()):
     text = fix_text + changing_text 
 
        
-    cv2.rectangle(image, (0,0), (200,75), (0,0,0), -1)
+    cv2.rectangle(image, (0,0), (200,100), (0,0,0), -1)
     coordinates = (10,20)
 
     for line in text.split('\n'):
