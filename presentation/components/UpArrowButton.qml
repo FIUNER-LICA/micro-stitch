@@ -14,9 +14,9 @@ Button {
         id: internal
         //Mouse over and click change color
         property var dynamicColor: if (toggleBtn.down){
-                                   toggleBtn.down ? btnColorClicked : btnColorDefault
+                                   toggleBtn.down ? toggleBtn.btnColorClicked : toggleBtn.btnColorDefault
                                    } else {
-                                   toggleBtn.hovered ? btnColorMouseOver : btnColorDefault
+                                   toggleBtn.hovered ? toggleBtn.btnColorMouseOver : toggleBtn.btnColorDefault
                                    }
     }
 
@@ -30,7 +30,7 @@ Button {
 
     Image {
     id: iconBtn
-    source: btnIconSource
+    source: toggleBtn.btnIconSource
     anchors.verticalCenter: parent.verticalCenter
     anchors.horizontalCenter: parent.horizontalCenter
     height: 35

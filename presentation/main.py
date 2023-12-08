@@ -194,7 +194,7 @@ if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     
     engine = QQmlApplicationEngine()
-    app.setWindowIcon(QIcon(('resources/images/logo.png')))
+    app.setWindowIcon(QIcon(('../resources/images/logo.png')))
     qml_file = os.fspath(Path(__file__).resolve().parent / "main.qml")
     
     controlers = Controlers()
