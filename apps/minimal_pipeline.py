@@ -13,7 +13,7 @@ import datetime
 
 from threading import Event, Thread
 
-from time import perf_counter, time_ns
+from time import perf_counter
 
 
 def focus_analisys(threshold, args):
@@ -72,35 +72,35 @@ thickness = 1
 fix_text = "API Backend: " + cap.getBackendName()\
             + '\n' + "cv2 fps: " + str(cap.get(cv2.CAP_PROP_FPS)) + '\n' 
 
-t_end = time_ns()
+t_end = perf_counter()
 
 counter = 1
 frame_rate = 0
-n_prom = 5000
-
+n_prom = 10
+frame_rate_line = "measure FPS: " + str(frame_rate) + "\n"
 while (cap.isOpened()):
-    
-    if counter % n_prom != 0:
-        frame_rate += 1/(time_ns()-t_end)
-        counter += 1
-    else:
-        frame_rate /= n_prom
-        
-        frame_rate = 0
-        counter = 1
-    
-    text = fix_text + "measure FPS: " + str(frame_rate) + "\n"
-
     ret, new_image = cap.read()
     image =  new_image.copy()
 
+    if counter % n_prom != 0:
+        frame_rate += 1/(perf_counter()-t_end)
+        counter += 1
+    else:
+        frame_rate /= n_prom
+        frame_rate_line = "measure FPS: " + str(round(frame_rate,2)) + "\n"
+        frame_rate = 0
+        counter = 1
+
+    text = fix_text + frame_rate_line 
+
+       
     cv2.rectangle(image, (0,0), (200,75), (0,0,0), -1)
     coordinates = (10,20)
 
     for line in text.split('\n'):
         cv2.putText(image, line , coordinates , font, fontScale, color, thickness, cv2.LINE_AA)
         coordinates = (coordinates[0], coordinates[1] + 15)
-    
+        
     cv2.imshow('new_image',image)
 
 
@@ -144,7 +144,7 @@ while (cap.isOpened()):
             # cv2.imwrite('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), panoramic[:,:,:])
             # cv2.imwritemulti('../data/panoramic_cv2_{}_{}_{}_{}_{}.tiff'.format(x.hour,x.minute,x.day,x.month, x.year), image_stack)#[:,:,:])
             break
-    t_end = time_ns()
+    t_end = perf_counter()
 
 cv2.destroyAllWindows()
 cap.release()
