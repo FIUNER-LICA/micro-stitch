@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 Button {
     id: btnTopBar
     // property alias toggleBtnIconsource: btnTopBar.icon.source
-    property url btnIconSource: "resources/icons/minus.svg"
+    property url btnIconSource: "../resources/icons/minus.svg"
     property color btnColorDefault:  "#0029323c"//"#1c1d20"
 
     property color btnColorMouseOver: "#23272E"

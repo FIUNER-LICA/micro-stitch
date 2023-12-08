@@ -65,7 +65,7 @@ Window {
             color: "#00ebffff"
             radius: 6
             border.color: "#bcd8d9"
-            border.width: 2
+            border.width: 1
             anchors.left: parent.left
             anchors.right: appControls.left
             anchors.top: parent.top
@@ -136,7 +136,7 @@ Window {
                 color: "#00ffe4e4"
                 radius: 6
                 border.color: "#bcd8d9"
-                border.width: 2
+                border.width: 1
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -181,7 +181,7 @@ Window {
                 color: "#00ffffff"
                 radius: 6
                 border.color: "#bcd8d9"
-                border.width: 2
+                border.width: 1
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: image_loc.bottom
@@ -228,7 +228,7 @@ Window {
                     
                     ComboBox {
                         id: camType
-                        anchors.fill: parent
+                        anchors.fill: parent 
                         layer.wrapMode: ShaderEffectSource.ClampToEdge
                         layer.enabled: true
                         layer.textureMirroring: ShaderEffectSource.NoMirroring
@@ -477,13 +477,14 @@ Window {
                     anchors.top: videoControls.bottom
                     anchors.bottom: parent.bottom
                     anchors.topMargin: 15
-                    anchors.rightMargin: 10
-                    anchors.leftMargin: 10
-                    anchors.bottomMargin: 10
+                    anchors.rightMargin: 20
+                    anchors.leftMargin: 20
+                    anchors.bottomMargin: 20
 
                     ControlsButton{ 
                         id: btnSave
                         anchors.fill: parent
+
                         iconSize: parent.height*0.42
                         colorMouseOver: "#86bcd8d9"
                         colorDefault: "#00bcd8d9"
@@ -564,7 +565,7 @@ Window {
             Text {
                 id: titleApp
                 color: "#bcd8d9"
-                text: qsTr("Micros Stitch")
+                text: qsTr("Micro Stitch")
                 anchors.left: iconApp.right
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -592,7 +593,7 @@ Window {
             Label {
                 id: labelLeftInfo
                 color: "#84a5a6"
-                text: qsTr("Stitching in real-time a panoramic image of microscopy")
+                text: qsTr("Stitching a panoramic of  microscopy images in real time")
                 anchors.fill: parent
                 verticalAlignment: Text.AlignVCenter
                 font.pointSize: 10
