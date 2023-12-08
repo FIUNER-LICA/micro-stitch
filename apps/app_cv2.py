@@ -30,7 +30,9 @@ new_image = np.zeros((640,480,3),dtype="uint8")
 image_stack =[]# np.zeros((640,480,3),dtype="uint8")
 
 
-cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
+#cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
+
+#cap = cv2.VideoCapture(1, cv2.CAP_DSHOW) 
 
 def focus_analisys(threshold, args):
     global new_image
