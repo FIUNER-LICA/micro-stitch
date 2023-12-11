@@ -119,7 +119,7 @@ class Controlers(QObject):
         global parnoramic_image
         global engine
         global new_image
-        parnoramic_image = SpinnakerPanoramicProvider()
+        # parnoramic_image = SpinnakerPanoramicProvider()
         engine.addImageProvider("panoprovider", parnoramic_image)
 
             
