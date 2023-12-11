@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Micro Stitch: Main Page</title>
+<title>Micro-Stitch: Project Status</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Micro Stitch
+   <div id="projectname">Micro-Stitch
    </div>
   </td>
  </tr>
@@ -68,10 +68,51 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Micro Stitch Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Project Status </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Overview</h1>
+<p>This repository contains the implementation of an innovative tool designed for real-time panoramic imaging in an optical microscopy environment. The tool aims to overcome limitations associated with conventional panoramic image construction techniques, offering an efficient and high-quality solution through the use of computer vision algorithms.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Motivation</h1>
+<p>In the field of optical microscopy, analysts commonly rely on a macroscopic reference frame to locate specific details in samples. Often, computational tools are employed to construct high-resolution panoramic images from lower-resolution captures. However, this traditional process is tedious, time-consuming, and often yields low-quality results in terms of image resolution.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Key Features</h1>
+<ul>
+<li><b>Continuous Image Acquisition:</b> The tool employs an innovative strategy of continuously forming the image while traversing the sample by moving the microscope stage.</li>
+<li><b>Panoramic Construction Algorithm:</b> An advanced algorithm based on computer vision tools has been developed for efficient real-time panoramic image construction.</li>
+<li><b>Testing and Validation:</b> The repository includes tests conducted in simulated environments and a real optical microscope. Simulated tests have shown promising results, demonstrating the ability to reconstruct images accurately. Tests on the optical microscope have yielded encouraging results in terms of speed and image quality.</li>
+<li><b>Identification of Intrinsic Aberrations:</b> Tests on the optical microscope have also allowed the identification of sources of intrinsic instrument aberrations, contributing to improving the technique's robustness.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Clonning de repository</h1>
+<p>1 - Clone the repository</p>
+<p>2 - Create a virtual enviroment with: </p><div class="fragment"><div class="line">python3 -m venv /path/name_venv</div>
+</div><!-- fragment --><p>3 - Activate venv with: </p><pre class="fragment">.\.name_venv\Scripts\Activate.ps1
+</pre><p> 4 - Install dependencies </p><pre class="fragment">py -m pip install -r requirements.txt
+</pre> <h2><a class="anchor" id="autotoc_md5"></a>
+User Interface</h2>
+<p>The tool features a user-friendly interface built with QML and Qt. Key aspects of the interface include:</p>
+<ul>
+<li>[Describe Key Feature 1]</li>
+<li>[Describe Key Feature 2] ... </li>
+</ul>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Video demo</h3>
+<p><a href="https://drive.google.com/uc?export=download&amp;id=1zKl5TwIeY8eJxJBBhQd9CDimP5wHXRG4">![Video Demo]()</a></p>
+<p>To launch the tool with the graphical user interface, run:</p>
+<div class="fragment"><div class="line">cd micro_stitch</div>
+<div class="line">python main_gui.py</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+Contributions and Issues</h2>
+<p>Contributions are welcome! Please fork the repository and create a pull request. If you encounter any issues, please open a new issue here. </p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+License</h2>
+<p>This project is licensed under the [License Name] - see the LICENSE.md file for details. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

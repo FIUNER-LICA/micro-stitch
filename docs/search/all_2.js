@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['build_0',['build',['../namespacemodules_1_1panoramic__acquisition.html#a2d0782f7f6f36e450db0a01d934ffbe6',1,'modules::panoramic_acquisition']]]
+  ['clonning_20de_20repository_0',['Clonning de repository',['../index.html#autotoc_md4',1,'']]],
+  ['contributions_20and_20issues_1',['Contributions and Issues',['../index.html#autotoc_md7',1,'']]],
+  ['controlers_2',['Controlers',['../classmain_1_1_controlers.html',1,'main']]]
 ];

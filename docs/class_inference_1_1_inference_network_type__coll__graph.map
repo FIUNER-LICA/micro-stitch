@@ -1,6 +1,0 @@
-<map id="Inference.InferenceNetworkType" name="Inference.InferenceNetworkType">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,210,107"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="80,5,135,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,47,103,79,98,80,96,47"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="119,47,117,80,112,79,114,47"/>
-</map>

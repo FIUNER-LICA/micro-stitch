@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['build_0',['build',['../namespacemodules_1_1panoramic__acquisition.html#a2d0782f7f6f36e450db0a01d934ffbe6',1,'modules::panoramic_acquisition']]]
+  ['image_5fquality_0',['image_quality',['../namespacemodules_1_1frame__validation.html#a544cc299aa145acbef7719715c7a941b',1,'modules::frame_validation']]]
 ];

@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['eventtype_0',['EventType',['../class_device_events_1_1_event_type.html',1,'DeviceEvents']]],
-  ['execute_5fdelete_5fcommand_1',['execute_delete_command',['../class_file_access___quick_spin_1_1_file_access.html#a90599fa7ced4167b6a60747344d493bb',1,'FileAccess_QuickSpin.FileAccess.execute_delete_command(cam)'],['../class_file_access___quick_spin_1_1_file_access.html#a90599fa7ced4167b6a60747344d493bb',1,'FileAccess_QuickSpin.FileAccess.execute_delete_command(cam)']]],
-  ['execute_5fread_5fcommand_2',['execute_read_command',['../class_file_access___quick_spin_1_1_file_access.html#a94044d20eec616fc3d68d7e01de92be5',1,'FileAccess_QuickSpin.FileAccess.execute_read_command(cam)'],['../class_file_access___quick_spin_1_1_file_access.html#a94044d20eec616fc3d68d7e01de92be5',1,'FileAccess_QuickSpin.FileAccess.execute_read_command(cam)']]],
-  ['execute_5fwrite_5fcommand_3',['execute_write_command',['../class_file_access___quick_spin_1_1_file_access.html#a59c91b6fe8b948f55367dc6426d6f586',1,'FileAccess_QuickSpin.FileAccess.execute_write_command(cam)'],['../class_file_access___quick_spin_1_1_file_access.html#a59c91b6fe8b948f55367dc6426d6f586',1,'FileAccess_QuickSpin.FileAccess.execute_write_command(cam)']]],
-  ['experiments_3a_3aacquire_5fstack_5fspinnaker_4',['acquire_stack_spinnaker',['../namespaceexperiments_1_1acquire__stack__spinnaker.html',1,'experiments']]],
-  ['experiments_3a_3aacquire_5fvideo_5fspinnaker_5',['acquire_video_spinnaker',['../namespaceexperiments_1_1acquire__video__spinnaker.html',1,'experiments']]]
+  ['image_5fquality_0',['image_quality',['../namespacemodules_1_1frame__validation.html#a544cc299aa145acbef7719715c7a941b',1,'modules::frame_validation']]],
+  ['interface_1',['User Interface',['../index.html#autotoc_md5',1,'']]],
+  ['issues_2',['Contributions and Issues',['../index.html#autotoc_md7',1,'']]]
 ];
