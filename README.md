@@ -1,5 +1,4 @@
 
-
 ## Overview
 
 This repository contains the implementation of an innovative tool designed for real-time panoramic imaging in an optical microscopy environment. The tool aims to overcome limitations associated with conventional panoramic image construction techniques, offering an efficient and high-quality solution through the use of computer vision algorithms.
