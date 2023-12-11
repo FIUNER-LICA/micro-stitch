@@ -95,9 +95,9 @@ Window {
                 transparentBorder: true
             }
 
-            SnakeGlow{
-                id: sng
-            }
+            // SnakeGlow{
+            //     id: sng
+            // }
 
         }
 
@@ -629,7 +629,7 @@ Window {
             TopBarButton{ id: minimized
             
                 onClicked: {window.showMinimized()
-                    sng.run = false
+                    //sng.run = false
                 }
             }
 
@@ -638,9 +638,9 @@ Window {
                 btnIconSource: "../resources/icons/square.svg"
                 iconSize: 13
                 onClicked: {internal.maximizeRestore()
-                    sng.stopX = window.width*0.66-(2*10+1)
-                    sng.stopY = window.height-topBarDescription.height-titleBar.height-2*10-1
-                    sng.run = true
+                    // sng.stopX = window.width*0.66-(2*10+1)
+                    // sng.stopY = window.height-topBarDescription.height-titleBar.height-2*10-1
+                    // sng.run = true
                 }
 
 
