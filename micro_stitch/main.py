@@ -5,13 +5,6 @@ from pathlib import Path
 
 sys.path.append('../')
 
-from apps.app_module_cv2 import AppCV2
-
-try:
-    from apps.app_module_spinnaker import AppSpinnaker
-except ImportError as error:
-    print ("Error de importación", error.msg)  
-
 from PySide6.QtGui import QGuiApplication, QImage, QIcon
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtQuick import QQuickImageProvider
