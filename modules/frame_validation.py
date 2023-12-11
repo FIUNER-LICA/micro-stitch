@@ -1,3 +1,4 @@
+
 """ Previous analysis of the frame to form the panoramic image
 """
 # from typing import Tuple
@@ -17,7 +18,7 @@ def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
     return ssim_data
 
 def focus_validation(image, *args):
-    
+
     focus_data = ['None focuse data']
     for arg in args:
         if arg==0:
