@@ -249,7 +249,7 @@ Window {
                         font.italic: true
                         font.pointSize: 12
                         flat: true
-                        model: ["Spinnaker camera", "Open CV camera"]
+                        model: ["Open CV camera","Spinnaker camera"]
                         delegate: ItemDelegate {
                             width: camType.width
                             contentItem: Text {
