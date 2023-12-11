@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,9 +21,8 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Micro Stitch<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">Micro Stitch
    </div>
-   <div id="projectbrief">This repository contains the implementation of an innovative tool designed for real-time panoramic imaging in an optical microscopy environment. The tool aims to overcome limitations associated with conventional panoramic image construction techniques, offering an efficient and high-quality solution through the use of computer vision algorithms.</div>
   </td>
  </tr>
  </tbody>
@@ -51,23 +46,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('class_image_events_1_1_image_event_handler.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -89,6 +67,11 @@ $(document).ready(function(){initNavTree('class_image_events_1_1_image_event_han
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>ImageEvents</b></li><li class="navelem"><a class="el" href="class_image_events_1_1_image_event_handler.html">ImageEventHandler</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -101,25 +84,9 @@ $(document).ready(function(){initNavTree('class_image_events_1_1_image_event_han
 <div class="dynheader">
 Inheritance diagram for ImageEvents.ImageEventHandler:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_image_events_1_1_image_event_handler__inherit__graph.png" border="0" usemap="#a_image_events_8_image_event_handler_inherit__map" alt="Inheritance graph"/></div>
-<map name="a_image_events_8_image_event_handler_inherit__map" id="a_image_events_8_image_event_handler_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,216,107"/>
-<area shape="rect" title=" " alt="" coords="19,5,202,32"/>
-<area shape="poly" title=" " alt="" coords="104,47,106,79,101,80,99,47"/>
-<area shape="poly" title=" " alt="" coords="122,47,120,80,115,79,117,47"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for ImageEvents.ImageEventHandler:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_image_events_1_1_image_event_handler__coll__graph.png" border="0" usemap="#a_image_events_8_image_event_handler_coll__map" alt="Collaboration graph"/></div>
-<map name="a_image_events_8_image_event_handler_coll__map" id="a_image_events_8_image_event_handler_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,216,107"/>
-<area shape="rect" title=" " alt="" coords="19,5,202,32"/>
-<area shape="poly" title=" " alt="" coords="104,47,106,79,101,80,99,47"/>
-<area shape="poly" title=" " alt="" coords="122,47,120,80,115,79,117,47"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="class_image_events_1_1_image_event_handler.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -204,25 +171,7 @@ is particular to the example.
 :param cam: Camera instance, used to get serial number for unique image filenames.
 :type cam: CameraPtr
 :rtype: None
-</pre> <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph.png" border="0" usemap="#aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph" alt=""/></div>
-<map name="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph" id="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph">
-<area shape="rect" title=" " alt="" coords="5,29,220,72"/>
-<area shape="poly" title=" " alt="" coords="72,29,70,19,77,10,91,5,113,3,137,5,150,12,148,17,135,10,112,8,92,10,80,15,75,21,77,28"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_icgraph.png" border="0" usemap="#aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_icgraph" alt=""/></div>
-<map name="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_icgraph" id="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_icgraph">
-<area shape="rect" title=" " alt="" coords="5,29,220,72"/>
-<area shape="poly" title=" " alt="" coords="148,17,135,10,112,8,92,10,80,15,75,21,77,28,72,29,70,19,77,10,91,5,113,3,137,5,150,12"/>
-</map>
-</div>
-
+</pre> 
 </div>
 </div>
 <a id="a8b51d955bb4c78c3d5edd60d91fa88ba" name="a8b51d955bb4c78c3d5edd60d91fa88ba"></a>
@@ -255,16 +204,7 @@ Here is the caller graph for this function:</div>
 :param cam: Camera instance, used to get serial number for unique image filenames.
 :type cam: CameraPtr
 :rtype: None
-</pre> <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph.png" border="0" usemap="#aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph" alt=""/></div>
-<map name="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph" id="aclass_image_events_1_1_image_event_handler_a8b51d955bb4c78c3d5edd60d91fa88ba_cgraph">
-<area shape="rect" title=" " alt="" coords="5,29,220,72"/>
-<area shape="poly" title=" " alt="" coords="72,29,70,19,77,10,91,5,113,3,137,5,150,12,148,17,135,10,112,8,92,10,80,15,75,21,77,28"/>
-</map>
-</div>
-
+</pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -433,13 +373,9 @@ of images.
 <li>modules/spinnaker/Examples/Python3/<b>ImageEvents.py</b></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><b>ImageEvents</b></li><li class="navelem"><a class="el" href="class_image_events_1_1_image_event_handler.html">ImageEventHandler</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
 </body>
 </html>

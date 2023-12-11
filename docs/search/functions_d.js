@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['traslation_5festimate_0',['traslation_estimate',['../classmodules_1_1mask__extracting_1_1_mask.html#a2eb8cf11de29de3e0466e6e1f2211537',1,'modules::mask_extracting::Mask']]]
+  ['run_5fsingle_5fcamera_0',['run_single_camera',['../classapp__module__spinnaker_1_1_app_spinnaker.html#af7f2810ea04c8888184e1dabaec93fa2',1,'app_module_spinnaker.AppSpinnaker.run_single_camera()'],['../namespaceexperiments_1_1acquire__stack__spinnaker.html#a6e3eb037cc22ab42afdd294ccc0e41c1',1,'experiments.acquire_stack_spinnaker.run_single_camera()'],['../namespaceexperiments_1_1acquire__video__spinnaker.html#a37bd3d17b2544a46ded36f554af139c4',1,'experiments.acquire_video_spinnaker.run_single_camera()']]]
 ];

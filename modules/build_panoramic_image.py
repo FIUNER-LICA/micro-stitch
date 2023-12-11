@@ -1,5 +1,5 @@
 import numpy as np
-# from numpy import ndarray, int8
+
 
 def store_valid_images(image):
     pass
@@ -27,7 +27,7 @@ def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c
     # print (tras_r)
     # print (tras_c)
     # print (R, C)
-    
+
     enlarged_rows = panoramic.shape[0]
     enlarged_column = panoramic.shape[1]
 
@@ -132,6 +132,5 @@ def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c
     # print("llega hasta aca 5")
     return panoramic_return
 
- 
 def overlap_sector_combination_linear_interp(panoramic,image, F, C, tras_f, tras_c):
     pass

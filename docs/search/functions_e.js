@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['upload_5fimage_0',['upload_image',['../class_file_access___quick_spin_1_1_file_access.html#a127f780fe9bbcb8efcba0779441de15b',1,'FileAccess_QuickSpin.FileAccess.upload_image(cam, verbose=False)'],['../class_file_access___quick_spin_1_1_file_access.html#a127f780fe9bbcb8efcba0779441de15b',1,'FileAccess_QuickSpin.FileAccess.upload_image(cam, verbose=False)']]]
+  ['traslation_5festimate_0',['traslation_estimate',['../classmodules_1_1mask__extracting_1_1_mask.html#a2eb8cf11de29de3e0466e6e1f2211537',1,'modules::mask_extracting::Mask']]]
 ];
