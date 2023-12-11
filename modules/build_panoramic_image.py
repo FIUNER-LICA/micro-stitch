@@ -5,10 +5,29 @@ def store_valid_images(image):
     pass
 
 def overlap_sector_combination_replacement(panoramic,image, R, C, tras_r, tras_c):
+    """
+    This function combines the overlapping sector of the new image with the image
+    of the panoramic image. The combination is made by replacing the pixels of the
+    overlapping sector of the panoramic image with the pixels of the overlapping
+    sector of the new image.
+
+    Args:
+        panoramic (ndarray): panoramic image
+        image (ndarray): new image
+        R (int): row position of the new image
+        C (int): column position of the new image
+        tras_r (int): net traslation in rows
+        tras_c (int): net traslation in columns
+
+    Returns:
+        ndarray: panoramic image with the overlapping sector of the new image
+    """
+    
     # print("llega hasta aca 1")
     # print (tras_r)
     # print (tras_c)
     # print (R, C)
+    
     enlarged_rows = panoramic.shape[0]
     enlarged_column = panoramic.shape[1]
 

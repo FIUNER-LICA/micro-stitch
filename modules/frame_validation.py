@@ -5,10 +5,19 @@ from skimage.metrics import structural_similarity as ssim
 import cv2
 
 def image_quality(image_1, image_2, channel_axis=2, multichannel=True):
+    """_ssim:
+        This function compute de structural similarity index of the images
+        X and Y and its components: Luminance, contrast and correlation
+        usage 1 : ssim (X,Y)
+        usage 2 : ssim (X,Y,window)
+        usage 3 : ssim (X,Y,window,K)
+        usage 4 : ssim (X,Y,window,K,L)_
+    """
     ssim_data = ssim(image_1, image_2, channel_axis, multichannel)
     return ssim_data
 
 def focus_validation(image, *args):
+    
     focus_data = ['None focuse data']
     for arg in args:
         if arg==0:
