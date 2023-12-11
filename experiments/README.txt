@@ -1,1 +1,0 @@
-Se realizan experimentos por ejemplo estadísticos, de comparación, calidad, eficiencia, etc.

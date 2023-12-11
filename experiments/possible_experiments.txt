@@ -1,3 +1,0 @@
-1 - Comparación de tiempos entre primer algoritmo y el algoritmo optimizado. Se puede usar el stack adquirido.
-
-2 - Evaluar formas de construcción de panorámica, ej: solapamiento vs interpolación [tiempo, calidad de imagen].
