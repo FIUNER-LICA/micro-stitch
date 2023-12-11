@@ -56,6 +56,7 @@ image_stack =[]# np.zeros((640,480,3),dtype="uint8")
 
 cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
 
+
 #cap = cv2.VideoCapture(1, cv2.CAP_DSHOW) 
 
 # Bandera para activar/desactivar el pre-análisis
@@ -116,9 +117,13 @@ while (cap.isOpened()):
     for line in text.split('\n'):
         cv2.putText(image, line , coordinates , font, fontScale, color, thickness, cv2.LINE_AA)
         coordinates = (coordinates[0], coordinates[1] + 15)
-        
-    cv2.imshow('new_image',image)
 
+    # cv2.namedWindow("new_image", cv2.WINDOW_KEEPRATIO)
+    # cv2.setWindowProperty("new_image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    
+    cv2.imshow('new_image',image)
+    
+    
 
 
 
