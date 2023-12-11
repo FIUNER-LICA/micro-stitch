@@ -95,60 +95,6 @@ class MyPanoramicProvider(QQuickImageProvider):
         # self.cvimg.scaled(QSize(300, 200),aspectMode = Qt.AspectRatioMode.KeepAspectRatio)
 
 
-class SpinnakerImageProvider(QQuickImageProvider):
-
-    def __init__(self, capture_object) -> None:
-        super(SpinnakerImageProvider, self).__init__(QQuickImageProvider.Image)
-        self.cvimg = []
-        self.capture = capture_object
-        self._lock = Lock()
-
-    def requestImage(self, p_str, size, u):
-        global new_image
-        global ret
-        ret, self.frame = self.capture.read()
-        with self._lock:
-            new_image = self.frame
-        self.height, self.width, self.depth = self.frame.shape
-        self.cvimg = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-        self.cvimg = QImage (self.cvimg.data, self.width, self.height, self.width*self.depth, QImage.Format_RGB888)       
-        return self.cvimg
-    
-    def finish_capture(self):
-        # @TODO: Puede ser que esté conectandose y desconectándose de la cámara en cada captura. Estar atento.
-        self.capture.release() 
-        self.frame = np.zeros((640,480,3),dtype="uint8")
-        self.height, self.width, self.depth = self.frame.shape
-        self.cvimg = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-        self.cvimg = QImage (self.cvimg.data, self.width, self.height, self.width*self.depth, QImage.Format_RGB888)           
-
-
-class SpinnakerPanoramicProvider(QQuickImageProvider):
-
-    def __init__(self) -> None:
-        super(SpinnakerPanoramicProvider, self).__init__(QQuickImageProvider.Image)
-        self.cvimg = []
-        self._build_panoramic = AppCV2()
-        self._lock = Lock()
-        self._panoramic = np.zeros((640,480,3),dtype="uint8")
-
-    def requestImage(self, p_str, size, u):
-        global new_image
-        global ret
-        with self._lock:
-            self.frame, growing_flag = self._build_panoramic.panoramic_build(new_image, ret) #self.capture.new_image, ret)  
-        self.height, self.width, self.depth = self.frame.shape
-        self.cvimg = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-        self.cvimg = QImage (self.cvimg.data, self.width, self.height, self.width*self.depth, QImage.Format_RGB888)       
-        return self.cvimg
-
-    def finish_capture(self):
-        self._build_panoramic.variables_restart()
-        self.frame = np.zeros((640,480,3),dtype="uint8")
-        self.height, self.width, self.depth = self.frame.shape
-        self.cvimg = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
-        self.cvimg = QImage (self.cvimg.data, self.width, self.height, self.width*self.depth, QImage.Format_RGB888)
-
 
 class Controlers(QObject):
 
@@ -166,12 +112,6 @@ class Controlers(QObject):
                 capture = cv2.VideoCapture(0,cv2.CAP_ANY)
                 video_image = MyImageProvider(capture)
                 #parnoramic_image = MyPanoramicProvider()
-
-            if camera_type == 1:
-                app_camera = AppSpinnaker()
-            #    app_camera.main()
-                video_image = SpinnakerImageProvider(app_camera)
-                #parnoramic_image = SpinnakerPanoramicProvider()
 
             engine.addImageProvider("myprovider", video_image)
             # engine.addImageProvider("panoprovider", parnoramic_image)
