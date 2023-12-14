@@ -34,8 +34,6 @@ def focus_analisys(threshold, args):
             print ("Error en cálculo de foco. Revise los parámetros.")
         new_image_capture.clear()
 
-
-
 # Inicio de variables, parámetros y creación de objetos
 # global R # Fila inicial del frame
 # global C # Columna inicial del frame
