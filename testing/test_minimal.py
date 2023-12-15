@@ -60,9 +60,9 @@ cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) #
 # Bandera para activar/desactivar el pre-análisis
 image_analisys = False
 
-new_image_capture = Event()
+# new_image_capture = Event()
 
-pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
+# pre_analisys = Thread (target= focus_analisys, daemon=True, args=(0,0))
 
 coordinates = (10,20)
 font = cv2.FONT_HERSHEY_PLAIN
@@ -85,8 +85,9 @@ changing_text = "measure FPS: " + str(frame_rate) + "\n"+\
     
 while (cap.isOpened()):
     ret, new_image = cap.read()
-    image =  new_image.copy()
-
+    
+    ## prepare and show frame with info text data
+    frame_with_text_info =  new_image.copy()
     if counter % n_prom != 0:
         frame_rate += 1/(perf_counter()-t_end)
         counter += 1
@@ -105,29 +106,21 @@ while (cap.isOpened()):
 
         frame_rate = 0
         counter = 1
-
     text = fix_text + changing_text 
-
-       
-    cv2.rectangle(image, (0,0), (200,100), (0,0,0), -1)
+    cv2.rectangle(frame_with_text_info, (0,0), (200,100), (0,0,0), -1)
     coordinates = (10,20)
 
     for line in text.split('\n'):
-        cv2.putText(image, line , coordinates , font, fontScale, color, thickness, cv2.LINE_AA)
+        cv2.putText(frame_with_text_info, line , coordinates , font, fontScale, color, thickness, cv2.LINE_AA)
         coordinates = (coordinates[0], coordinates[1] + 15)
-
-    # cv2.namedWindow("new_image", cv2.WINDOW_KEEPRATIO)
-    # cv2.setWindowProperty("new_image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     
-    cv2.imshow('new_image',image)
-    
+    cv2.imshow('new_image',frame_with_text_info)
+    ## end prepare image with info text data
     
 
-
-
-    if image_analisys:
-        pre_analisys.start()
-        new_image_capture.set() 
+    # if image_analisys:
+    #     pre_analisys.start()
+    #     new_image_capture.set() 
     
     if ret == True:
         #Dar inicio al stream y formación de panorámica
