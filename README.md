@@ -53,4 +53,4 @@ python main.py
 Contributions are welcome! Please fork the repository and create a pull request.
 If you encounter any issues, please open a new issue here.
 ## License
-This project is licensed under the [License Name] - see the LICENSE.md file for details.
+This project is licensed under the MIT license - see the LICENSE.md file for details.
