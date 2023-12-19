@@ -39,7 +39,7 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
 The tool features a user-friendly interface built with QML and Qt. Key aspects of the interface include:
 
 ### Video demo
-[![Micro Stitch]()](https://youtu.be/4HrGwN9sFaQ?list=PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o)
+[![Micro Stitch](https://i3.ytimg.com/vi/4HrGwN9sFaQ/hqdefault.jpg)](https://youtu.be/4HrGwN9sFaQ)
 
 
 To launch the tool with the graphical user interface, run:
