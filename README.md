@@ -36,7 +36,7 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
 
 ## User Interface
 
-The tool features a user-friendly interface built with QML and Qt. Key aspects of the interface include:
+The tool features a user-friendly interface built with QML and Qt.
 
 ### Video demo
 [![Micro Stitch](https://i3.ytimg.com/vi/4HrGwN9sFaQ/hqdefault.jpg)](https://youtu.be/4HrGwN9sFaQ)
