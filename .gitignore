@@ -135,3 +135,6 @@ dmypy.json
 *.tif
 
 *.pyc
+
+Doxyfile
+.vscode
