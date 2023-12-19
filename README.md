@@ -38,29 +38,15 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
 
 The tool features a user-friendly interface built with QML and Qt. Key aspects of the interface include:
 
-- [Describe Key Feature 1]
-- [Describe Key Feature 2]
-   ...
 ### Video demo
-[![Video Demo]()](https://youtu.be/4HrGwN9sFaQ?list=PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o)
-
 [![Micro Stitch]()](https://youtu.be/4HrGwN9sFaQ?list=PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o)
-
-[![Watch the video](https://img.youtube.com/vi/PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o/default.jpg)](https://www.youtube.com/embed/PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o)
-
-[<img src="https://img.youtube.com/vi/PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o/hqdefault.jpg" width="600" height="300"
-/>](https://www.youtube.com/embed/PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o)
-
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
-
-
 
 
 To launch the tool with the graphical user interface, run:
 
 ```bash
 cd micro_stitch
-python main_gui.py
+python main.py
 ```
 
 ## Contributions and Issues
