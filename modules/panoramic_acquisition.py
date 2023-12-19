@@ -52,10 +52,14 @@ def build (panoramic, last_image, new_image, mask: Mask, R, C):
     growing = False
 
     # Extracción/Obtención de máscara
-    try:
-        mask.mask_by_simple_method(last_image, 200)
-    except:
-        print ('Error. Falla en generación de máscara')
+    mask.mask_by_simple_method(last_image, 200)
+    
+    # TODO: Quitar try-except para la máscara
+    # try:
+    #     mask.mask_by_simple_method(last_image, 200)
+    # except:
+    #     print ('Error. Falla en generación de máscara')
+
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']
     try:
         mask_search.default_search(new_image, mask)

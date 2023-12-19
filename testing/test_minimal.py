@@ -96,16 +96,17 @@ while (cap.isOpened()):
         #frame_rate_line = "measure FPS: " + str(round(frame_rate,2)) + "\n"
         var_lap = str(round(cv2.Laplacian(new_image,cv2.CV_64F,0).var(),2))
         var_sobel = str(round(cv2.Sobel(new_image,cv2.CV_64F,1,0,ksize=5).var(),2))
-        #ssim = str(round(ssim(last_image, new_image,channel_axis=2, multichannel=True ),2))
+        str_ssim = str(round(ssim(last_image, new_image,channel_axis=2, multichannel=True ),2))
 
         changing_text = "measured FPS: " + str(round(frame_rate,2)) + "\n" + \
                         "var Laplacian: " + var_lap   + "\n" + \
                         "var Sobel:  " + var_sobel + "\n"  + \
-                        "SSIM: "  
+                        "SSIM: "  + str_ssim
 
 
         frame_rate = 0
         counter = 1
+
     text = fix_text + changing_text 
     cv2.rectangle(frame_with_text_info, (0,0), (200,100), (0,0,0), -1)
     coordinates = (10,20)
@@ -160,12 +161,3 @@ while (cap.isOpened()):
 
 cv2.destroyAllWindows()
 cap.release()
-
-    # aux_lap_var = cv2.Laplacian(new_image,cv2.CV_64F,0).var()
-    # aux_lap_sob = cv2.Sobel(new_image,cv2.CV_64F,1,0,ksize=5).var()
-    # if not is_first_image:
-    #     aux_ssim = ssim(last_image, new_image,channel_axis=2, multichannel=True )
-    #     print ("Image info:\n" +
-    #                       "Varianza Lap.: " +str(aux_lap_var) + "\n"
-    #                       "Varianza Sob.: " +str(aux_lap_sob) + "\n"
-    #                       "SSIM : " + str(aux_ssim) + "\n")
