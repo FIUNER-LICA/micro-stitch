@@ -44,6 +44,12 @@ The tool features a user-friendly interface built with QML and Qt. Key aspects o
 ### Video demo
 [![Video Demo]()](https://drive.google.com/uc?export=download&id=1zKl5TwIeY8eJxJBBhQd9CDimP5wHXRG4)
 
+[<img src="https://img.youtube.com/vi/<VIDEO_ID>/hqdefault.jpg" width="600" height="300"
+/>](https://www.youtube.com/embed/<VIDEO_ID>)
+
+[<iframe width="657" height="459" src="https://www.youtube.com/embed/4HrGwN9sFaQ?list=PL_tRBemWo2fw_iY3PvlJZia27tK3jHw2o" title="Micro-Stitch v0.1- demo01" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>]
+
+
 
 To launch the tool with the graphical user interface, run:
 
