@@ -15,12 +15,14 @@ Button  {
         QtObject {
         id: internal
 
-        property var dynamicColor: {if(modernButton.down){ 
-                                   modernButton.down ? modernButton.colorPressed: modernButton.colorDefault
-                                    } else {
-                                    modernButton.hovered? colorMouseOver : colorDefault
-                                   }
-                                   }
+        property var dynamicColor: {
+            if(modernButton.down){ 
+                modernButton.down ? modernButton.colorPressed: modernButton.colorDefault
+                } 
+            else {
+                modernButton.hovered? modernButton.colorMouseOver : modernButton.colorDefault
+                }
+            }
         
         property bool isHover: false
 

@@ -14,6 +14,8 @@ from threading import Lock
 import cv2
 import numpy as np
 
+from modules.app_module_cv2 import AppCV2
+
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
@@ -104,7 +106,7 @@ class Controlers(QObject):
             if camera_type == 0:
                 capture = cv2.VideoCapture(0,cv2.CAP_ANY)
                 video_image = MyImageProvider(capture)
-                #parnoramic_image = MyPanoramicProvider()
+                parnoramic_image = MyPanoramicProvider()
 
             engine.addImageProvider("myprovider", video_image)
             # engine.addImageProvider("panoprovider", parnoramic_image)
