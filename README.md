@@ -17,6 +17,14 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
 
 - **Identification of Intrinsic Aberrations:** Tests on the optical microscope have also allowed the identification of sources of intrinsic instrument aberrations, contributing to improving the technique's robustness.
 
+## Compatibility
+
+This project has been tested and is compatible with the following environment:
+
+- **Operating System:** Windows
+- **Python Version:** 3.x
+
+
 # Clonning de repository
 
 1 - Clone the repository
@@ -26,7 +34,7 @@ In the field of optical microscopy, analysts commonly rely on a macroscopic refe
     python3 -m venv /path/name_venv
 ```
 
-3 - Activate venv with:
+3 - Activate venv with (Windows):
     
     .\.name_venv\Scripts\Activate.ps1
 
