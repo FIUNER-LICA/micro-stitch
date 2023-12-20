@@ -117,7 +117,7 @@ while (cap.isOpened()):
                     flag_view = False
             except Exception as e:
                 flag_view = False
-                print(e)
+            #    print(e)
          
         if flag_view:
             view = cv2.resize(panoramic, (700,500))
