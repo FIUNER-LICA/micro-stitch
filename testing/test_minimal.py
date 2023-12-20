@@ -12,8 +12,6 @@ import cv2
 import numpy as np
 import datetime
 
-from threading import Event, Thread
-
 from time import perf_counter
 
 
