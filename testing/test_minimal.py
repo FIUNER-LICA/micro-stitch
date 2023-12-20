@@ -101,7 +101,12 @@ while (cap.isOpened()):
     
     if ret == True:
         #Dar inicio al stream y formación de panorámica
-        if not is_first_image: # and focus:
+        if is_first_image:# and (cv2.waitKey(1) & 0xFF == ord('i')):
+            panoramic = new_image.copy()
+            last_image = new_image.copy()
+            is_first_image = False
+
+        else: # and focus:
             try:           
                 panoramic, growing, R, C = pac.build(panoramic, last_image, new_image, mask_object, R, C)
                 if growing:
@@ -109,16 +114,11 @@ while (cap.isOpened()):
                     last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                     flag_view = True
                 else: 
-                    flag_view = True
-            except:
+                    flag_view = False
+            except Exception as e:
                 flag_view = False
-                
-
-        if is_first_image:# and (cv2.waitKey(1) & 0xFF == ord('i')):
-            panoramic = new_image.copy()
-            last_image = new_image.copy()
-            is_first_image = False
-
+                print(e)
+         
         if flag_view:
             view = cv2.resize(panoramic, (700,500))
             cv2.imshow('Panorámica',view)
