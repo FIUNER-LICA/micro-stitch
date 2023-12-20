@@ -15,26 +15,6 @@ import datetime
 from time import perf_counter
 
 
-def focus_analisys(threshold, args):
-    global new_image
-    global focus
-    while (True):
-        new_image_capture.wait()
-        try:
-            
-            focus_value = f_val.focus_validation(new_image, args)
-            if focus_value[1] > threshold:
-                print (focus_value[1], threshold)
-                focus=True
-            else:
-                focus = False 
-        except: 
-            print ("Error en cálculo de foco. Revise los parámetros.")
-        new_image_capture.clear()
-
-# Inicio de variables, parámetros y creación de objetos
-# global R # Fila inicial del frame
-# global C # Columna inicial del frame
 R = 0
 C = 0
 
@@ -49,9 +29,7 @@ new_image = np.zeros((640,480,3),dtype="uint8")
 
 image_stack =[]# np.zeros((640,480,3),dtype="uint8")
 
-
 cap = cv2.VideoCapture(0,cv2.CAP_ANY) # 2, cv2.CAP_DSHOW) # 
-
 
 #cap = cv2.VideoCapture(1, cv2.CAP_DSHOW) 
 
@@ -125,9 +103,9 @@ while (cap.isOpened()):
         #Dar inicio al stream y formación de panorámica
         if not is_first_image: # and focus:
             try:           
-                image_stack.append(new_image)
                 panoramic, growing, R, C = pac.build(panoramic, last_image, new_image, mask_object, R, C)
                 if growing:
+                    image_stack.append(new_image)
                     last_image = new_image# .copy() # @todo: Se puede sacar el .copy() SI NO SE AGREGO LA NUEVA IMAGEN NO DEBE ASIGNARSE A LAST IMAGE
                     flag_view = True
                 else: 
