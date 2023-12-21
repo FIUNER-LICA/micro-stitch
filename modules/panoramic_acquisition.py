@@ -65,7 +65,7 @@ def build (panoramic, last_image, new_image, mask: Mask, R, C):
         mask_search.default_search(new_image, mask)
         if not mask.satisfactory_criterion:
             growing = False
-            return panoramic, growing
+            return panoramic, growing , R, C
     except:
         print ('Error. Falla en búsqueda de mascará')
 # Sí halló la máscara, calcular la traslación

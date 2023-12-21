@@ -35,8 +35,9 @@ def default_search(image, mask: Mask) -> None: # lista de 1 elemento
             mask.satisfactory_criterion = True
         else:
             mask.satisfactory_criterion = False
-    except:
+    except Exception as e:
         print ('Error. No se encuentra la matriz de correlación')
+        print(e)
     
     
     
