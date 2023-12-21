@@ -1,5 +1,5 @@
 """
-Mask Extracting
+MaskExtractor
 ===============
 
 This module contains the implementation of 'Mask' object.\n
@@ -9,7 +9,7 @@ methods implemented in the Mask class.
 Mask Content
 ------------
 
-Mask object contains the data related to the mask (attributes):
+MaskExtractor object contains the data related to the mask (attributes):
     - Array values
     - Position from where it was extracted
     - Position where it was found
@@ -21,7 +21,7 @@ Mask methods:
 
 """
 
-class Mask:
+class MaskExtractor:
     
     """
     Mask

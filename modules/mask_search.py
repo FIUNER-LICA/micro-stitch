@@ -11,10 +11,10 @@ The implemented methods are:
 # from threading import Thread
 from sys import path
 path.append("../")
-from modules.mask_extracting import Mask
+from modules.mask_extracting import MaskExtractor
 from cv2 import matchTemplate, minMaxLoc, TM_CCOEFF_NORMED
 
-def default_search(image, mask: Mask) -> None: # lista de 1 elemento
+def default_search(image, mask: MaskExtractor) -> None: # lista de 1 elemento
     """
     The search for the mask in the new frame is performed, using the OpenCV 
     methods: matchTemplate (calculates the correlation) and minMaxLoc (finds 

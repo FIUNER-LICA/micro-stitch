@@ -3,7 +3,7 @@ from sys import path
 path.append('../')
 
 from modules.globals_DTO import *
-from modules.mask_extracting import Mask
+from modules.mask_extracting import MaskExtractor
 import modules.panoramic_acquisition as pac
 import modules.frame_validation as f_val
 import numpy as np
@@ -17,7 +17,7 @@ class AppCV2:
         self._growing = True
 
         self._last_image = []
-        self._mask_object = Mask()
+        self._mask_object = MaskExtractor()
         self._panoramic = np.zeros((640,480,3),dtype="uint8")
         self._new_image = np.zeros((640,480,3),dtype="uint8")
 
@@ -82,7 +82,7 @@ class AppCV2:
         self._growing = True
 
         self._last_image = []
-        self._mask_object = Mask()
+        self._mask_object = MaskExtractor()
         self._panoramic = np.zeros((640,480,3),dtype="uint8")
         self._new_image = np.zeros((640,480,3),dtype="uint8")
 

@@ -8,7 +8,7 @@
 
 """
 import frame_validation
-from mask_extracting import Mask
+from mask_extracting import MaskExtractor
 import mask_search
 import build_panoramic_image
 
@@ -23,7 +23,7 @@ image_0 = None
 panoramic = image_0
 image_1 = None
 
-mascara = Mask()
+mascara = MaskExtractor()
 
 # Validación de frame
 # # (No necesariamente deben retornar algo, solo para entendimiento)

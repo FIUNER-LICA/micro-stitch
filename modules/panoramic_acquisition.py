@@ -17,13 +17,13 @@
 from sys import path
 path.append('../')
 # from modules.globals_DTO import *
-from modules.mask_extracting import Mask
+from modules.mask_extracting import MaskExtractor
 from modules import mask_search
 from modules import build_panoramic_image
 
 # Establecer conexión con la cámara. Adquirir imagen. --> OpenCV, PySpin, EasyPySpin
 
-def build (panoramic, last_image, new_image, mask: Mask, R, C):
+def build (panoramic, last_image, new_image, mask: MaskExtractor, R, C):
     """
     This method expands the panoramic image. For this, in addition to the parameters 
     it receives, it needs two global variables (R and C) from 'globals_DTO'. That 
@@ -52,13 +52,10 @@ def build (panoramic, last_image, new_image, mask: Mask, R, C):
     growing = False
 
     # Extracción/Obtención de máscara
-    mask.mask_by_simple_method(last_image, 200)
-    
-    # TODO: Quitar try-except para la máscara
-    # try:
-    #     mask.mask_by_simple_method(last_image, 200)
-    # except:
-    #     print ('Error. Falla en generación de máscara')
+    try:
+        mask.mask_by_simple_method(last_image, 200)
+    except Exception as e:
+        raise e
 
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']
     try:

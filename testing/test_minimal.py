@@ -2,7 +2,7 @@ from sys import path
 
 path.append('../')
 
-from modules.mask_extracting import Mask
+from modules.mask_extracting import MaskExtractor
 import modules.panoramic_acquisition as pac
 from modules.globals_DTO import *
 import modules.frame_validation as f_val
@@ -23,7 +23,7 @@ flag_view  = True
 focus = True
 growing = True
 
-mask_object = Mask()
+mask_object = MaskExtractor()
 panoramic = np.zeros((640,480,3),dtype="uint8")
 new_image = np.zeros((640,480,3),dtype="uint8")
 
