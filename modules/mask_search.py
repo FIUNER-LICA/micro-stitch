@@ -33,7 +33,7 @@ def default_search(image, mask: MaskExtractor) -> None: # lista de 1 elemento
         res = matchTemplate(image, mask.mask_value, TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = minMaxLoc(res)
     except Exception as e:
-        raise Exception('Falla en búsqueda de mascara')
+        raise Exception('Error in the search of the mask')
     else:
         mask.new_mask_position = (max_loc[1], max_loc[0])
         if max_val>=0.8:
