@@ -90,7 +90,6 @@ class MyPanoramicProvider(QQuickImageProvider):
         # self.cvimg.scaled(QSize(300, 200),aspectMode = Qt.AspectRatioMode.KeepAspectRatio)
 
 
-
 class Controlers(QObject):
 
     def __init__(self) -> None:
