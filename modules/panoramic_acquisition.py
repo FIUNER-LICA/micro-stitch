@@ -62,12 +62,14 @@ def build (panoramic, last_image, new_image, mask: Mask, R, C):
 
 # Búsqueda/Localización de la máscara, si fue correctamente validada [validation_1 == validation_2 == 'OK']
     try:
-        mask_search.default_search(new_image, mask)
+        mask_search.default_search(new_image, mask)     
+    except Exception as e:
+        raise e
+    else:
         if not mask.satisfactory_criterion:
             growing = False
             return panoramic, growing , R, C
-    except:
-        print ('Error. Falla en búsqueda de mascará')
+
 # Sí halló la máscara, calcular la traslación
     try:
         if not mask.new_mask_position == None: # implementar try-except en vez de if

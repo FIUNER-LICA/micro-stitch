@@ -49,13 +49,13 @@ class Mask:
             image (ndarray): last frame added to the panoramic image.
             r (int): number of pixels to dimension the lengh and hight of the mask [rxr].
         """
-        try:
+        if image.shape[0] > r and image.shape[1] > r:
             row     = int ((image.shape[0]-r)/2)
             column  = int ((image.shape[1]-r)/2)
             self._mask_value = image[row:row+r,column:column+r,:]
             self._mask_position.append((row,column))
-        except:
-            print ("Error. No se pudo completar la extracción de máscara.")
+        else:
+            raise ValueError('Image size is smaller than the mask size')
 
     def n_mask_by_default_method(self, image, r): # en principio n = 4...
         """

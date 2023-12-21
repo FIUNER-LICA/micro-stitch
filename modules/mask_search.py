@@ -40,8 +40,4 @@ def default_search(image, mask: Mask) -> None: # lista de 1 elemento
             mask.satisfactory_criterion = True
         else:
             mask.satisfactory_criterion = False
-    
-    
-    
-def compound_search(image, mask: Mask): # lista de más de 1 elemento
-    pass
+   
