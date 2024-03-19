@@ -28,10 +28,11 @@ Button  {
             if(modernButton.hovered){ 
                 modernButton.hovered ? zoomAumented.running=true: zoomAumented.running=false
                 isHover = true
-            } else { if(isHover){
+            } else { 
+                //if(isHover){
                 modernButton.hovered ? zoomDecreazed.running=false: zoomDecreazed.running=true
                 isHover = false
-            }
+            //}
             }
         }
         }

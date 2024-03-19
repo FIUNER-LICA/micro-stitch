@@ -128,6 +128,7 @@ class SpinnakerPanoramicProvider(QQuickImageProvider):
     def __init__(self) -> None:
         super(SpinnakerPanoramicProvider, self).__init__(QQuickImageProvider.Image)
         self.cvimg = []
+        #TODO: CAMBIAR A SPINNAKER Y EN PANORAMIC_INIT HACER LOGICA PARA QUE INICIE CON EL QUE CORRESPONDA
         self._build_panoramic = AppCV2()
         self._lock = Lock()
         self._panoramic = np.zeros((640,480,3),dtype="uint8")
@@ -179,7 +180,11 @@ class Controlers(QObject):
         else:
             if camera_type==0:
                 parnoramic_image.finish_capture()
+                video_image.finish_capture()
+            if camera_type==1:
+                parnoramic_image.finish_capture()
                 video_image.finish_capture()  
+
     @Slot()
     def panoramic_init(self):
         global video_image
