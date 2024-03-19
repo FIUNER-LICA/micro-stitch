@@ -95,9 +95,9 @@ Window {
                 transparentBorder: true
             }
 
-            SnakeGlow{
-                id: sng
-            }
+            // SnakeGlow{
+            //     id: sng
+            // }
 
         }
 
@@ -249,7 +249,7 @@ Window {
                         font.italic: true
                         font.pointSize: 12
                         flat: true
-                        model: ["Spinnaker camera", "Open CV camera"]
+                        model: ["Open CV camera", "Spinnaker camera"]
                         delegate: ItemDelegate {
                             width: camType.width
                             contentItem: Text {
@@ -477,17 +477,18 @@ Window {
                     anchors.top: videoControls.bottom
                     anchors.bottom: parent.bottom
                     anchors.topMargin: 15
-                    anchors.rightMargin: 10
-                    anchors.leftMargin: 10
-                    anchors.bottomMargin: 10
+                    anchors.rightMargin: 20
+                    anchors.leftMargin: 20
+                    anchors.bottomMargin: 15
 
                     ControlsButton{ 
                         id: btnSave
                         anchors.fill: parent
-                        iconSize: parent.height*0.42
+                        iconSize: parent.height*0.8
                         colorMouseOver: "#86bcd8d9"
                         colorDefault: "#00bcd8d9"
-                        btnIconSource: "../resources/icons/save.svg"
+                        // btnIconSource: "../resources/icons/save.svg"
+                        btnIconSource: "../resources/icons/play_panoramic.svg"
                         RectangleGlowEffect{}
                         onClicked:{ controlers.panoramic_init()
                                 // timer_button.running = true
